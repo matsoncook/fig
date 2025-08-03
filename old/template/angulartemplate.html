@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    <title>Angular Template</title>
+
+    <script type="text/javascript" src="/js/angular.min.js"></script>    
+    <script type="text/javascript" src="/template/angulartemplate.js"></script>
+    
+    </head>
+
+    <body>
+        <div ng-app="productCategoryModule">
+            <div  ng-controller="ProductCategoryController as productCategoryCtrl">
+                <div class="col-md-4" ng-repeat="productCategory in productCategoryList | orderBy:'order'">
+                    <h2>{{productCategory.name}}</h2>
+                    <p>{{productCategory.description}}</p>
+                    <p><a class="btn btn-secondary" href="/product/product.html?code={{productCategory.code}}" role="button">View details &raquo;</a></p>
+                 </div>
+            </div>
+        </div>   
+    </body>
+</html>

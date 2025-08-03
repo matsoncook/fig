@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+<style>
+html,body
+{
+	overflow:hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta charset="UTF-8">
+
+
+
+
+<title>Templete Html5 game</title>
+
+<script>
+
+ //This will stop vertical scrolling
+ document.ontouchmove = function(event){
+ event.preventDefault();
+ }
+
+</script> 
+
+
+<script type="text/javascript" src="/template/gamejs/render.js"> </script>
+
+
+</head>
+<body bgcolor="#ffffff">
+    <table align="center" height="100%" >
+        <tbody valign="middle">
+            <tr>
+                <td align="center" valign="middle" width="100%" >
+
+                    <div id="divcanvas" align="center">
+	            		<canvas class="center-block"  id="myCanvas" style="background-color: rgba(256, 256, 256, 1);" ></canvas>
+	        		</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+<script type="text/javascript">
+
+	gui = new gut();
+	gui.canvas = document.getElementById("myCanvas");
+    gui.setSize(window.innerWidth,window.innerHeight);
+    
+    
+
+</script>
+</body>
+</html>

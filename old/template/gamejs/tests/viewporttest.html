@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+<style>
+html,body
+{
+	overflow:hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta charset="UTF-8">
+
+
+
+
+<title>ViewPort Test</title>
+
+<script>
+
+ //This will stop vertical scrolling
+ document.ontouchmove = function(event){
+ event.preventDefault();
+ }
+
+</script> 
+<script type="text/javascript" src="/transform/point2d.js"> </script>
+<script type="text/javascript" src="/transform/bounds2d.js"> </script>
+<script type="text/javascript" src="/template/gamejs/viewport.js"> </script>
+
+
+
+</head>
+<body bgcolor="#ffffff">
+    <table align="center" height="100%" >
+        <tbody valign="middle">
+            <tr>
+                <td align="center" valign="middle" width="100%" >
+
+                    <div id="divcanvas" align="center">
+	            		<canvas class="center-block"  id="myCanvas" style="background-color: rgba(256, 256, 256, 1);" ></canvas>
+	        		</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+<script type="text/javascript">
+
+var testDescription = "";
+var totalTests = 0;
+var totalPositives = 0;
+
+function totalCount(compareResult)
+{
+	totalTests++;
+	if(compareResult)
+	{
+		totalPositives++;
+	}
+	
+}
+
+function printTotals()
+{
+	console.log(""+totalPositives + " tests passed out of " + totalTests);
+}
+
+function compare(description,compare1, compare2)
+{
+	var compare = (compare1 == compare2);
+	totalCount(compare);
+	console.log(testDescription + " " + description + " " +compare1 + " " +compare2 + " " + compare);
+}
+
+function compareViewPortCanvas(viewPort, viewPortX,viewPortY,canvasX,canvasY)
+{
+	compare("viewPortToCanvasX():" ,viewPort.viewPortToCanvasX(viewPortX),canvasX);
+	compare("viewPortToCanvasY():", viewPort.viewPortToCanvasY(viewPortY),canvasY);	
+	compare("canvasToViewPortX():" ,viewPort.canvasToViewPortX(canvasX),viewPortX);
+	compare("canvasToViewPortY():", viewPort.canvasToViewPortY(canvasY),viewPortY);	
+}
+function compareViewPortWorld(viewPort, viewPortX,viewPortY,worldX,worldY)
+{
+	compare("viewPortToWorldX():" ,viewPort.viewPortToWorldX(viewPortX),worldX);
+	compare("viewPortToWorldY():", viewPort.viewPortToWorldY(viewPortY),worldY);	
+	compare("worldToViewPortX():" ,viewPort.worldToViewPortX(worldX),viewPortX);
+	compare("worldToViewPortY():", viewPort.worldToViewPortY(worldY),viewPortY);	
+}
+function compareViewPortCanvasSize(viewPort, viewPortX,viewPortY,canvasX,canvasY)
+{
+	compare("viewPortToCanvasX():" ,viewPort.viewPortToCanvasSizeX(viewPortX),canvasX);
+	compare("viewPortToCanvasY():", viewPort.viewPortToCanvasSizeY(viewPortY),canvasY);	
+	//compare("canvasToViewPortX():" ,viewPort.canvasToViewPortSizeX(canvasX),viewPortX);
+	//compare("canvasToViewPortY():", viewPort.canvasToViewPortSizeY(canvasY),viewPortY);	
+}
+function compareViewPortWorldSize(viewPort, viewPortX,viewPortY,worldX,worldY)
+{
+	compare("viewPortToWorldSizeX():" ,viewPort.viewPortToWorldSizeX(viewPortX),worldX);
+	compare("viewPortToWorldSizeY():", viewPort.viewPortToWorldSizeY(viewPortY),worldY);	
+	compare("worldToViewPortSizeX():" ,viewPort.worldToViewPortSizeX(worldX),viewPortX);
+	compare("worldToViewPortSizeX():", viewPort.worldToViewPortSizeY(worldY),viewPortY);	
+}
+
+
+
+
+function testViewPortCanvasRatio1x1()
+{
+	testDescription = "Ratio1x1";
+	var worldBounds           = createBounds2(10,10);
+	var viewPortWorldMagnification = createPoint2d(1,1);
+	var viewPortWorldPosition = createPoint2d(0,0);
+	var viewPortBounds        = createBounds2(1,1);
+	var viewPortCanvasMagnification = createPoint2d(100,100);
+	var viewPortCanvasPosition = createPoint2d(50,50);
+	var canvasBounds          = createBounds2(100,100);
+	
+	var viewPort = createViewPort7(
+            worldBounds,
+            viewPortWorldMagnification,
+			viewPortWorldPosition,
+			viewPortBounds,
+			viewPortCanvasMagnification,
+			viewPortCanvasPosition,
+			canvasBounds
+			);
+	
+	
+	
+	compareViewPortCanvas(viewPort, 0  ,   0, 50, 50);
+	compareViewPortCanvas(viewPort, .25, .25, 75, 25);
+	compareViewPortCanvas(viewPort,-.25,-.25, 25, 75);
+	
+	compareViewPortCanvasSize(viewPort,.25,.25, 25, 25);
+	
+}
+function testViewPortCanvasRatio2x1()
+{
+	testDescription = "Ratio2x1";	
+	var worldBounds           = createBounds2(10,10);
+	var viewPortWorldMagnification = createPoint2d(1,1);
+	var viewPortWorldPosition = createPoint2d(0,0);
+	var viewPortBounds        = createBounds2(2,1);
+	var viewPortCanvasMagnification = createPoint2d(100,100);// this will be changed by setRatios
+	var viewPortCanvasPosition = createPoint2d(100,50);
+	var canvasBounds          = createBounds2(200,100);
+	
+	var viewPort = createViewPort7(
+            worldBounds,
+            viewPortWorldMagnification,
+			viewPortWorldPosition,
+			viewPortBounds,
+			viewPortCanvasMagnification,
+			viewPortCanvasPosition,
+			canvasBounds
+			);
+	
+	compareViewPortCanvas(viewPort, 0  ,   0, 100, 50);
+	compareViewPortCanvas(viewPort, .25, .25, 125, 25);
+	compareViewPortCanvas(viewPort,-.25,-.25, 75, 75);
+	
+	compareViewPortCanvasSize(viewPort,.25,.25, 25, 25);
+	
+}
+function testViewPortCanvasRatio1x2()
+{
+	testDescription = "Ratio1x2";
+	var worldBounds           = createBounds2(10,10);
+	var viewPortWorldMagnification = createPoint2d(1,1);
+	var viewPortWorldPosition = createPoint2d(0,0);
+	var viewPortBounds        = createBounds2(1,2);
+	var viewPortCanvasMagnification = createPoint2d(100,100);// this will be changed by setRatios
+	var viewPortCanvasPosition = createPoint2d(50,100);
+	var canvasBounds          = createBounds2(100,200);
+	
+	var viewPort = createViewPort7(
+            worldBounds,
+            viewPortWorldMagnification,
+			viewPortWorldPosition,
+			viewPortBounds,
+			viewPortCanvasMagnification,
+			viewPortCanvasPosition,
+			canvasBounds
+			);
+
+	compareViewPortCanvas(viewPort, 0  ,   0, 50, 100);
+	compareViewPortCanvas(viewPort, .25, .25, 75, 75);
+	compareViewPortCanvas(viewPort,-.25,-.25, 25, 125);
+	
+	compareViewPortCanvasSize(viewPort,.25,.25, 25, 25);
+	
+}
+
+//This puts a square size (50,50) viewport at the lower right center(175,75)
+//With half the mag
+
+function testViewPortCanvasRatio2x1LowerLeft()
+{
+	testDescription = "Ratio2x1LowerLeft";
+	var worldBounds           = createBounds2(10,10);
+	var viewPortWorldMagnification = createPoint2d(1,1);
+	var viewPortWorldPosition = createPoint2d(0,0);
+	var viewPortBounds        = createBounds2(1,1);
+	var viewPortCanvasMagnification = createPoint2d(50,50);// this will be changed by setRatios
+	var viewPortCanvasPosition = createPoint2d(175,75);
+	var canvasBounds          = createBounds2(200,100);
+	
+	var viewPort = createViewPort7(
+            worldBounds,
+            viewPortWorldMagnification,
+			viewPortWorldPosition,
+			viewPortBounds,
+			viewPortCanvasMagnification,
+			viewPortCanvasPosition,
+			canvasBounds
+			);
+	
+	
+	
+	compareViewPortCanvas(viewPort, 0  ,   0, 175, 75);
+	compareViewPortCanvas(viewPort, .25, .25, 187.5, 62.5);
+	compareViewPortCanvas(viewPort,-.25,-.25, 162.5, 87.5);
+	
+	compareViewPortCanvasSize(viewPort,.25,.25, 12.5,  12.5);
+	
+}
+
+
+
+function testViewPortCanvasRatio1x2LowerLeft()
+{
+	testDescription = "Ratio1x2LowerLeft";
+	var worldBounds           = createBounds2(10,10);
+	var viewPortWorldMagnification = createPoint2d(1,1);
+	var viewPortWorldPosition = createPoint2d(0,0);
+	var viewPortBounds        = createBounds2(1,1);
+	var viewPortCanvasMagnification = createPoint2d(50,50);// this will be changed by setRatios
+	var viewPortCanvasPosition = createPoint2d(75,175);
+	var canvasBounds          = createBounds2(100,200);
+	
+	var viewPort = createViewPort7(
+            worldBounds,
+            viewPortWorldMagnification,
+			viewPortWorldPosition,
+			viewPortBounds,
+			viewPortCanvasMagnification,
+			viewPortCanvasPosition,
+			canvasBounds
+			);
+	
+	
+	
+	compareViewPortCanvas(viewPort, 0  ,   0, 75, 175);
+	compareViewPortCanvas(viewPort, .25, .25,  87.5, 162.5);
+	compareViewPortCanvas(viewPort,-.25,-.25,  62.5, 187.5);
+	
+	compareViewPortCanvasSize(viewPort,.25,.25, 12.5,  12.5);
+	
+}
+
+function testViewPortWorldRatio1x1()
+{
+	testDescription = "testViewPortWorldRatio1x1";
+	var worldBounds           = createBounds2(10,10);
+	var viewPortWorldMagnification = createPoint2d(1,1);
+	var viewPortWorldPosition = createPoint2d(0,0);
+	var viewPortBounds        = createBounds2(1,1);
+	var viewPortCanvasMagnification = createPoint2d(100,100);// this will be changed by setRatios
+	var viewPortCanvasPosition = createPoint2d(50,50);
+	var canvasBounds          = createBounds2(100,100);
+	
+	var viewPort = createViewPort7(
+            worldBounds,
+            viewPortWorldMagnification,
+			viewPortWorldPosition,
+			viewPortBounds,
+			viewPortCanvasMagnification,
+			viewPortCanvasPosition,
+			canvasBounds
+			);
+	
+	compareViewPortWorld(viewPort, 0 , 0, 0, 0);
+	
+	viewPort.viewPortWorldPosition =  createPoint2d(1,1);
+	compareViewPortWorld(viewPort, 0 , 0, 1, 1);
+	compareViewPortWorld(viewPort, 1 , 1, 2, 2);
+	compareViewPortWorld(viewPort, -1 , -1,0, 0);
+	
+	compareViewPortWorldSize(viewPort, 1 , 1,1, 1);
+	
+	viewPort.viewPortWorldMagnification =  createPoint2d(0.5,0.5);
+	
+	compareViewPortWorld(viewPort, 0 , 0, 1, 1);
+	compareViewPortWorld(viewPort, 1 , 1, 1.5, 1.5);
+	compareViewPortWorld(viewPort, -1 , -1,0.5, 0.5);
+	
+	compareViewPortWorldSize(viewPort, 1 , 1,0.5, 0.5);
+	
+	
+	
+	//compareViewPortCanvasSize(viewPort,.25,.25, 25, 25);
+	
+}
+
+testViewPortCanvasRatio1x1();
+testViewPortCanvasRatio2x1();
+testViewPortCanvasRatio1x2();
+testViewPortCanvasRatio2x1LowerLeft();
+testViewPortCanvasRatio1x2LowerLeft();
+testViewPortWorldRatio1x1();
+
+printTotals();
+
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+<style>
+html,body
+{
+	overflow:hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta charset="UTF-8">
+
+
+
+
+<title>ViewPort Test</title>
+
+<script>
+
+ //This will stop vertical scrolling
+ document.ontouchmove = function(event){
+ event.preventDefault();
+ }
+
+</script> 
+<script type="text/javascript" src="/transform/point2d.js"> </script>
+<script type="text/javascript" src="/transform/linesegment2d.js"> </script>
+<script type="text/javascript" src="/template/gamejs/viewport.js"> </script>
+
+
+
+</head>
+<body bgcolor="#ffffff">
+    <table align="center" height="100%" >
+        <tbody valign="middle">
+            <tr>
+                <td align="center" valign="middle" width="100%" >
+
+                    <div id="divcanvas" align="center">
+	            		<canvas class="center-block"  id="myCanvas" style="background-color: rgba(256, 256, 256, 1);" ></canvas>
+	        		</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+<script type="text/javascript">
+
+
+
+function bisectCompare(description,p0x,p0y, p1x,p1y,p2x,p2y,rx,ry)
+{
+	var lineSegmentBisector = new LineSegmentBisector();
+	
+	
+	var p0           = createPoint2d(p0x,p0y);
+	var p1           = createPoint2d(p1x,p1y);
+	var p2           = createPoint2d(p2x,p2y);
+	
+	
+	
+	var near         = createPoint2d(rx,ry);
+	
+	var result       = new Point2d();
+	var temp0        = new Point2d();
+	var temp1        = new Point2d();
+	
+	p0.bisect6(p1,p2,1,result,temp0,temp1);
+	
+	console.log(description + " " + result.equalsNear1(near,.001) + " rx: " + rx + " " + result.x + " ry: " + ry + " " + result.y);
+}
+
+function tests()
+{
+	
+	bisectCompare("result:", 1,2,0,0,2,1,.7071,.7071);
+	bisectCompare("result:", 2,1,0,0,1,2,.7071,.7071);
+	
+	bisectCompare("result:", -1,.5, 0,0, 1,.5, 0,1);
+	bisectCompare("result:", 1,.5, 0,0, -1,.5, 0,1);
+	
+	bisectCompare("result:", 1,-.5, 0,0, -1,-.5, 0,1);
+	
+}
+tests();
+
+    
+
+</script>
+</body>
+</html>
