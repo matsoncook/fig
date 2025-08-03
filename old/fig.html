@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+<style>
+html,body
+{
+	overflow:hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+*.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta charset="UTF-8">
+<title>Smiley Flowers</title>
+
+<script>
+
+ //This will stop vertical scrolling
+ document.ontouchmove = function(event){
+ event.preventDefault();
+ }
+
+</script>
+
+
+
+</head>
+<body bgcolor="#ffffff" >
+    <table align="center" height="100%" >
+        <tbody valign="middle">
+            <tr>
+                <td align="center" valign="middle" width="100%" >
+
+                    <div id="divcanvas" align="center"  >
+	            		<canvas class="center-block unselectable"  id="myCanvas" style="background-color: rgba(256, 256, 256, 1);border-style: none;" ></canvas>
+	        		</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("myCanvas");
+var context = canvas.getContext('2d');
+canvas.style = "background-color: rgba(256, 256, 256, 1);border-style: none;"
+
+
+
+
+function startGame()
+{
+
+    
+    if(game.checkAllLoaded(Date.now()))
+    {
+        canvas.style = "background-color: rgba(256, 256, 256, 1);border-style: solid;border-width: 2px;";
+        myLoader.stop();
+        game.start();
+    }
+    else
+    {
+        setTimeout(startGame,1000);
+    }
+    
+}
+
+//context.fillrext
+</script>
+<script type="text/javascript" src="/loader/circloader.js"> </script>
+<script type="text/javascript" src="/loader/loader.js"> </script>
+<script type="text/javascript" src="/audio/audio.js"> </script>
+<script type="text/javascript" src="/image/image.js"> </script>
+<script type="text/javascript" src="/transform/point2d.js"> </script>
+<script type="text/javascript" src="/transform/rectangle2d.js"> </script>
+<script type="text/javascript" src="/transform/linesegment2d.js"> </script>
+<script type="text/javascript" src="/transform/random.js"> </script>
+<script type="text/javascript" src="/transform/stepper.js"> </script>
+<script type="text/javascript" src="/draw/drawutils.js"> </script>
+<script type="text/javascript" src="/comms/xhttp.js"> </script>
+<script type="text/javascript" src="/template/gamejs/state.js"> </script>
+<script type="text/javascript" src="/template/gamejs/control.js"> </script>
+<script type="text/javascript" src="/template/gamejs/render.js"> </script>
+<script type="text/javascript" src="/template/gamejs/animation.js"> </script>
+<script type="text/javascript" src="/template/gamejs/game.js"> </script>
+<script type="text/javascript" src="/object2d/textobject.js"> </script>
+<script type="text/javascript" src="/object2d/audioobject.js"> </script>
+<script type="text/javascript" src="/object2d/background.js"> </script>
+<script type="text/javascript" src="/pong2/staticobject.js"> </script>
+<script type="text/javascript" src="/pong2/ball.js"> </script>
+<script type="text/javascript" src="/pong2/intro.js"> </script>
+<script type="text/javascript" src="/pong2/wrapup.js"> </script>
+<script type="text/javascript" src="/pong2/game.js"> </script>
+<script type="text/javascript" src="/fig/setup.js"> </script>
+<script type="text/javascript">
+//var controlCanvas = document.body;
+var controlCanvas = canvas;
+setupGame(canvas,controlCanvas,true);
+
+setTimeout(startGame,3000);
+
+</script>
+</body>
+</html>
