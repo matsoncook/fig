@@ -18,7 +18,7 @@ export default class SwirlLoader {
   color = "200,200,200";
   strokeStyle = "#ffffff";
 
-  drawSwirl = function(canvas, context, angleRad, transparency) {
+  drawSwirl = function(canvas : HTMLCanvasElement, context : CanvasRenderingContext2D, angleRad : number, transparency : number) {
     context.save();
     // translate context to center of canvas
     context.translate(this.centerX, this.centerY);
@@ -53,7 +53,7 @@ export default class SwirlLoader {
   }
 
 
-  draw(canvas, context) {
+  draw(canvas : HTMLCanvasElement, context : CanvasRenderingContext2D) {
     if (this.thisTime == 0) {
       this.thisTime = Date.now();
     }
@@ -94,8 +94,8 @@ export default class SwirlLoader {
 
     var finalRad = this.revolutionOn ? this.rad : this.radRevolutionOff;
     finalRad -= Math.PI / 2;
-    var x = Math.cos(finalRad) * radius;
-    var y = Math.sin(finalRad) * radius;
+    // var x = Math.cos(finalRad) * radius;
+    // var y = Math.sin(finalRad) * radius;
 
     var tranparency = this.revolutionOn ? 1 : (Math.sin(this.rad + (2 * Math.PI)) + 1) / 2;
 
