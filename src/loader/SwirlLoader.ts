@@ -18,7 +18,10 @@ export default class SwirlLoader {
   color = "200,200,200";
   strokeStyle = "#ffffff";
 
-  drawSwirl = function(canvas : HTMLCanvasElement, context : CanvasRenderingContext2D, angleRad : number, transparency : number) {
+
+
+  drawSwirl(canvas : HTMLCanvasElement, context : CanvasRenderingContext2D, angleRad : number, transparency : number) {
+
     context.save();
     // translate context to center of canvas
     context.translate(this.centerX, this.centerY);
