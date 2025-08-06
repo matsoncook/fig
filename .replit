@@ -1,8 +1,13 @@
-modules = ["web"]
+modules = ["nodejs-20", "web"]
 run = "node server.js"
 
 [nix]
 channel = "stable-25_05"
+packages = ["typescript"]
 
 [deployment]
 run = ["sh", "-c", "node server.js"]
+
+[[ports]]
+localPort = 3000
+externalPort = 80
