@@ -29,7 +29,7 @@ export default class LoadHandler {
   animationFrame: any;
 
   constructor(private canvas: HTMLCanvasElement, private context: CanvasRenderingContext2D, private loader: Loader) {
-
+    this.drawLoadingProgress = this.drawLoadingProgress.bind(this);
   }
   setSize(windowInnerWidth: number, windowInnerHeight: number) {
 
