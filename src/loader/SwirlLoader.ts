@@ -1,4 +1,6 @@
-export default class SwirlLoader {
+import Loader from "./Loader";
+
+export default class SwirlLoader implements Loader {
 
 
   prevTime = 0;
