@@ -21,7 +21,7 @@ import Loader from "./Loader";
 export default class LoadHandler {
 
   widthHeightRatio = 1;
-  borderRatio = 1;
+  borderRatio = 0;
   width = 0;
   height = 0;
   exitLoadingAnimation = false;
