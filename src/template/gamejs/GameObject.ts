@@ -1,4 +1,5 @@
 import { Point2d } from "../../transform/Point2d";
+import RectangleCentered2d from "../../transform/RectangleCentered2d";
 
 export default class GameObject {
 
@@ -14,6 +15,19 @@ export default class GameObject {
   timeScaledVelocity = new Point2d();//Should be velocity units per sec?
   bounds = Point2d.createPoint2d(0,0);
   rect = new RectangleCentered2d(0,0,0,0);
+
+  fuseOn : boolean= false;
+  fuseCount:number = 0;
+  fuse :number= 0;
+
+  cull : boolean= false;
+  visible :boolean= true;
+  hitCount :number= 0;
+
+  points :number= 0;
+
+  usingViewPort :boolean = false;
+  viewPort:any = null;
   /*
   (gameObjectType,name)
   this.gameObjectType = gameObjectType;
