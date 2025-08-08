@@ -1,3 +1,5 @@
+import { Point2d } from "../../transform/Point2d";
+
 export default class GameObject {
 
   gameObjectType : any;
@@ -5,12 +7,12 @@ export default class GameObject {
   childObjectList : GameObject[] = [];
   previousTime :number = 0;
 
-  position = createPoint2d(0,0);
-  size =  createPoint2d(0,0);	
-  velocity = createPoint2d(0,0);//Should be direction Vector?
+  position = Point2d.createPoint2d(0,0);
+  size =  Point2d.createPoint2d(0,0);	
+  velocity = Point2d.createPoint2d(0,0);//Should be direction Vector?
   speedUnitsPerSec = 0;
   timeScaledVelocity = new Point2d();//Should be velocity units per sec?
-  bounds = createPoint2d(0,0);
+  bounds = Point2d.createPoint2d(0,0);
   rect = new RectangleCentered2d(0,0,0,0);
   /*
   (gameObjectType,name)
