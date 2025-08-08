@@ -1,4 +1,17 @@
 export default class GameObject {
+
+  gameObjectType : any;
+  name : string = "";
+  childObjectList : GameObject[] = [];
+  previousTime :number = 0;
+
+  position = createPoint2d(0,0);
+  size =  createPoint2d(0,0);	
+  velocity = createPoint2d(0,0);//Should be direction Vector?
+  speedUnitsPerSec = 0;
+  timeScaledVelocity = new Point2d();//Should be velocity units per sec?
+  bounds = createPoint2d(0,0);
+  rect = new RectangleCentered2d(0,0,0,0);
   /*
   (gameObjectType,name)
   this.gameObjectType = gameObjectType;
