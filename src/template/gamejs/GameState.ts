@@ -1,3 +1,4 @@
+import GameControl from "./GameControl";
 import GameObject from "./GameObject";
 
 export default class GameState {
@@ -7,7 +8,7 @@ export default class GameState {
     this.gameObjectList.push(gameObject);
   }
 
-  bindControls() {}
+  bindControls(gameControl: GameControl) {}
   //this.previousTime = 0;
   advance(time: number) {
     this.beforeAdvance(time);

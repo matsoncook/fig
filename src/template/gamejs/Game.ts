@@ -1,0 +1,102 @@
+import GameAnimation from "./GameAnimation";
+import GameControl from "./GameControl";
+import GameObject from "./GameObject";
+import GameRenderer from "./GameRenderer";
+import GameState from "./GameState";
+
+export default class  Game
+{
+  //@Deprecated
+  extendedState = false;
+
+  soundEnabled = false;
+
+
+  gameRenderer = new GameRenderer();
+  gameState = new GameState();
+  gameControl = new GameControl(this.gameRenderer);
+  gameAnimation = new GameAnimation(this.gameState, this.gameRenderer);
+  gameIntro : any;
+  //this.gameIntro = new GameIntro();
+
+  loading = false;
+
+  lastTimeChecked = 0;
+  firstTimeChecked = 0;
+  maxCheckMediaTime = 1000;
+  mediaList = [];
+  
+  constructor()
+  {
+    
+  }
+  setup()
+  {
+    this.gameIntro = {
+      gameObjectList :  [],
+
+      isNowPlaying : function()
+      {
+        return false;
+      }
+    };
+    this.gameAnimation.state = this.gameState;
+    this.gameAnimation.renderer = this.gameRenderer;
+    this.gameControl.gameRenderer = this.gameRenderer;
+  }
+ 
+ 
+
+
+  addGameObject(gameObject : GameObject)
+  {
+    this.gameState.gameObjectList.push(gameObject)
+  }
+
+  start()
+  {
+    this.gameAnimation.startAnimation();		
+  }
+  start1()
+  {
+    this.loading = false;
+    this.gameAnimation.startAnimation();		
+  }
+
+  stop()
+  {
+    this.gameAnimation.stopAnimation();		
+  }
+
+
+  checkAllLoaded(theTime : number)
+  {
+    if(this.firstTimeChecked!=0)
+    {
+      if(theTime-this.firstTimeChecked > this.maxCheckMediaTime)
+      {
+        return true;
+      }
+    }
+    else
+    {
+      this.firstTimeChecked = theTime;
+    }		
+  }
+
+  switchGameState(gameState : GameState)
+  {
+    this.gameState.switchGameStateOut();
+    this.gameState = gameState;
+
+    this.gameState.bindControls(this.gameControl);
+    this.gameState.switchGameStateIn();
+
+  }
+
+  restart()
+  {
+
+  }
+
+}
