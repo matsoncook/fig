@@ -1,10 +1,15 @@
 import Game from "../template/gamejs/Game";
+import GameRenderer from "../template/gamejs/GameRenderer";
 
-function setupGame(canvas:any,controlCanvas : any,audio :any)
+function setupGame(canvas:HTMLCanvasElement,controlCanvas :HTMLCanvasElement,audio :any)
 {
   //testLineSegmentIntersecter();
-  var game = new Game();
-/*
+  let gameRenderer = new GameRenderer(canvas,controlCanvas);
+  gameRenderer.setSize(window.innerWidth,window.innerHeight);
+  let game = new Game(gameRenderer);
+
+  
+  /*
   game.gameRenderer.canvas = canvas;
   game.gameControl.controlCanvas = controlCanvas;	
   game.gameRenderer.setSize(window.innerWidth,window.innerHeight);

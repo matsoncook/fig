@@ -12,7 +12,7 @@ export default class  Game
   soundEnabled = false;
 
 
-  gameRenderer = new GameRenderer();
+  //gameRenderer = new GameRenderer();
   gameState = new GameState();
   gameControl = new GameControl(this.gameRenderer);
   gameAnimation = new GameAnimation(this.gameState, this.gameRenderer);
@@ -26,7 +26,7 @@ export default class  Game
   maxCheckMediaTime = 1000;
   mediaList = [];
   
-  constructor()
+  constructor(private gameRenderer : GameRenderer)
   {
     
   }
