@@ -1,3 +1,4 @@
+import FigGame from "./fig/setup";
 import LoadHandler from "./loader/LoadHandler";
 import SwirlLoader from "./loader/SwirlLoader";
 
@@ -31,5 +32,13 @@ if(ctx)
   loader.setSize(window.innerWidth, window.innerHeight);
   loader.drawLoadingProgress();
 }
+
+
+function intro()
+{
+  let figGame = new FigGame();
+  figGame.setupGame(canvas,canvas,true);
+}
+
 
 

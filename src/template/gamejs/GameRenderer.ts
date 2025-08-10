@@ -4,8 +4,10 @@ export default class GameRenderer {
   height : number = 100;
   borderRatio = 0.05;
   context : CanvasRenderingContext2D | null = null;
+  staticImageCount = 8;
+  staticImages : HTMLImageElement[] = [];
 
-  constructor(private canvas : HTMLCanvasElement,private controlCanvas : HTMLCanvasElement)
+  constructor(private canvas : HTMLCanvasElement, private controlCanvas : HTMLCanvasElement)
   {
     this.context = canvas.getContext('2d');
   }
