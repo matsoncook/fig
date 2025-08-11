@@ -4,17 +4,18 @@ import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
 
 export default class Intro{
+  gameState = new GameState();
   constructor(private game : Game)
   {
     
   }
   createGameIntro()
   {
-    var gameState = new GameState();
-    gameState.initialise = function()
+    //var gameState = new GameState();
+    this.gameState.initialise = function()
     {
       var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
-      gameState.addGameObject(bg); 
+      this.addGameObject(bg); 
 
       //This is now done in the gameState constructor
       //this.staticObjectGroup = new GameObject(0,"Group");
@@ -34,11 +35,11 @@ export default class Intro{
         {
           var so = createStaticObject(0,0,0.2,0.2,"staticImage"+i,this.game.gameRenderer.staticImages[i]);
 
-          this.staticObjectGroup.childObjectList.push(so);
+          this.gameState.staticObjectGroup.childObjectList.push(so);
 
 
         }
-
+/*
         var to = createTextObject2d("Play");
         to.setBold(true);
         to.size.set2(0.1,0.15);
@@ -57,6 +58,7 @@ export default class Intro{
         toh.setFontComicSansMS();
 
         this.gameObjectList.push(toh);
+        */
       }
   /*
   function createGameIntro()
@@ -190,6 +192,6 @@ export default class Intro{
 */
 }
 
-function createStaticObject(arg0: number, arg1: number, arg2: number, arg3: number, arg4: string, arg5: HTMLImageElement) {
+function createStaticObject(arg0: number, arg1: number, arg2: number, arg3: number, arg4: string, arg5: HTMLImageElement) : GameObject {
     throw new Error("Function not implemented.");
 }
