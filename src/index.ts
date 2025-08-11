@@ -40,5 +40,7 @@ function intro()
   figGame.setupGame(canvas,canvas,true);
 }
 
+intro();
+
 
 

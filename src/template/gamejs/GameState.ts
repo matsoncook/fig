@@ -3,7 +3,13 @@ import GameObject from "./GameObject";
 
 export default class GameState {
   //render tree
+  constructor()
+  {
+    this.gameObjectList.push(this.staticObjectGroup);
+  }
   gameObjectList : GameObject[] = [];
+  initialise: () => void = ()=>{};
+  staticObjectGroup:  GameObject = new GameObject(0,"Group");;
   addGameObject(gameObject: GameObject) {
     this.gameObjectList.push(gameObject);
   }

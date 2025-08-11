@@ -3,8 +3,8 @@ import RectangleCentered2d from "../../transform/RectangleCentered2d";
 
 export default class GameObject {
 
-  gameObjectType : any;
-  name : string = "";
+  //gameObjectType : any;
+  //name : string = "";
   childObjectList : GameObject[] = [];
   previousTime :number = 0;
 
@@ -28,6 +28,11 @@ export default class GameObject {
 
   usingViewPort :boolean = false;
   viewPort:any = null;
+
+  constructor(private gameObjectType : any, private name : string)
+  {
+    
+  }
   /*
   (gameObjectType,name)
   this.gameObjectType = gameObjectType;

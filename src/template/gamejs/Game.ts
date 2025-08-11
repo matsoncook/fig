@@ -6,6 +6,12 @@ import GameState from "./GameState";
 
 export default class  Game
 {
+  public get gameRenderer(): GameRenderer {
+      return this._gameRenderer;
+  }
+  public set gameRenderer(value: GameRenderer) {
+      this._gameRenderer = value;
+  }
   //@Deprecated
   extendedState = false;
 
@@ -26,7 +32,7 @@ export default class  Game
   maxCheckMediaTime = 1000;
   mediaList = [];
   
-  constructor(private gameRenderer : GameRenderer)
+  constructor(private _gameRenderer: GameRenderer)
   {
     
   }
