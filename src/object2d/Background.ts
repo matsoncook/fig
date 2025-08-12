@@ -1,14 +1,15 @@
 import McImage from "../image/Image";
 import GameObject from "../template/gamejs/GameObject";
 import GameRenderer from "../template/gamejs/GameRenderer";
+import WorldObjectType from "../template/gamejs/WorldObjectType";
 
-export default class Background
+export default class Background extends GameObject
 {
 
   public static createBackgroundImageObject(source : string) : GameObject
   {
-    var atan45 = Math.atan(Math.PI / 4);
-    var bg = new GameObject(3,"Background")
+    
+    var bg = new Background();
     
     bg.render = function(gameObject : GameObject ,gameRenderer : GameRenderer)
     {
@@ -29,6 +30,11 @@ export default class Background
     }).load();
     
     return bg;
+  }
+  constructor()
+  {
+    super(WorldObjectType.Background,"Background");
+    this.mcImage = null;
   }
   /*
   function createBackgroundImageObject(source)

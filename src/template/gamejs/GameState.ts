@@ -1,3 +1,4 @@
+import GroupObject from "../../object2d/GroupObject";
 import GameControl from "./GameControl";
 import GameObject from "./GameObject";
 
@@ -9,7 +10,7 @@ export default class GameState {
   }
   gameObjectList : GameObject[] = [];
   initialise: () => void = ()=>{};
-  staticObjectGroup:  GameObject = new GameObject(0,"Group");;
+  staticObjectGroup:  GroupObject = new GroupObject("Group");;
   addGameObject(gameObject: GameObject) {
     this.gameObjectList.push(gameObject);
   }
