@@ -1,4 +1,5 @@
 import GameObject from "../template/gamejs/GameObject";
+import GameRenderer from "../template/gamejs/GameRenderer";
 
 export default class Background
 {
@@ -6,7 +7,20 @@ export default class Background
   public static createBackgroundImageObject(source : string) : GameObject
   {
     var atan45 = Math.atan(Math.PI / 4);
-    var bg = new GameObject(3,"Background");
+    var bg = new GameObject(3,"Background")
+    bg.render = function(gameObject : GameObject ,gameRenderer : GameRenderer)
+    {
+      if(gameObject.loaded)
+      {
+        gameRenderer.context.drawImage(gameObject.mcImage.image,0, 0, gameRenderer.width, gameRenderer.height);
+      }
+      else
+      {
+        gameRenderer.context.clearRect(0, 0, gameRenderer.width, gameRenderer.height);
+      }
+
+    }
+    
     return bg;
   }
   /*

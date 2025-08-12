@@ -1,15 +1,18 @@
+import GameObject from "./GameObject";
+
 export default class GameRenderer {
   widthHeightRatio = 1;
   width : number = 100;
   height : number = 100;
   borderRatio = 0.05;
-  context : CanvasRenderingContext2D | null = null;
+  context : CanvasRenderingContext2D ;
   staticImageCount = 8;
   staticImages : HTMLImageElement[] = [];
+  time : number = 0;
 
   constructor(private canvas : HTMLCanvasElement, private controlCanvas : HTMLCanvasElement)
   {
-    this.context = canvas.getContext('2d');
+    this.context = canvas.getContext('2d') as CanvasRenderingContext2D;
   }
 
   /*
@@ -96,11 +99,12 @@ export default class GameRenderer {
   {
 
   }
-  this.render = function(time,context,gameObjectList)
+  */
+  render(time : number,context : CanvasRenderingContext2D,gameObjectList : GameObject[])
   {
     this.time = time;
 
-    this.collectStats();
+    //this.collectStats();
 
     //context.clearRect(0, 0, gameRenderer.width, gameRenderer.height);
 
@@ -130,12 +134,12 @@ export default class GameRenderer {
 
   };
 
-  this.renderGameObject = function(gameObject,context)
+  renderGameObject(gameObject : GameObject,context : CanvasRenderingContext2D)
   {
     gameObject.doRender(gameObject,this);
 
   };
-
+  /*
   this.gameToCanvasP = function(fromPoint,toPoint)
   {
     toPoint.x = this.gameToCanvasX(fromPoint.x);

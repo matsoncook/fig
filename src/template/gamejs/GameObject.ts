@@ -1,38 +1,41 @@
 import { Point2d } from "../../transform/Point2d";
 import RectangleCentered2d from "../../transform/RectangleCentered2d";
+import GameRenderer from "./GameRenderer";
 
 export default class GameObject {
-
   //gameObjectType : any;
   //name : string = "";
-  childObjectList : GameObject[] = [];
-  previousTime :number = 0;
+  childObjectList: GameObject[] = [];
+  previousTime: number = 0;
 
-  position = Point2d.createPoint2d(0,0);
-  size =  Point2d.createPoint2d(0,0);	
-  velocity = Point2d.createPoint2d(0,0);//Should be direction Vector?
+  position = Point2d.createPoint2d(0, 0);
+  size = Point2d.createPoint2d(0, 0);
+  velocity = Point2d.createPoint2d(0, 0); //Should be direction Vector?
   speedUnitsPerSec = 0;
-  timeScaledVelocity = new Point2d();//Should be velocity units per sec?
-  bounds = Point2d.createPoint2d(0,0);
-  rect = new RectangleCentered2d(0,0,0,0);
+  timeScaledVelocity = new Point2d(); //Should be velocity units per sec?
+  bounds = Point2d.createPoint2d(0, 0);
+  rect = new RectangleCentered2d(0, 0, 0, 0);
 
-  fuseOn : boolean= false;
-  fuseCount:number = 0;
-  fuse :number= 0;
+  fuseOn: boolean = false;
+  fuseCount: number = 0;
+  fuse: number = 0;
 
-  cull : boolean= false;
-  visible :boolean= true;
-  hitCount :number= 0;
+  cull: boolean = false;
+  visible: boolean = true;
+  hitCount: number = 0;
 
-  points :number= 0;
+  points: number = 0;
 
-  usingViewPort :boolean = false;
-  viewPort:any = null;
+  usingViewPort: boolean = false;
+  viewPort: any = null;
 
-  constructor(private gameObjectType : any, private name : string)
-  {
-    
-  }
+  loaded: boolean = false;
+  mcImage: any;
+
+  constructor(
+    private gameObjectType: number,
+    private name: string,
+  ) {}
   /*
   (gameObjectType,name)
   this.gameObjectType = gameObjectType;
@@ -92,24 +95,19 @@ export default class GameObject {
     return this.timeScaledVelocity;
   }
 
+*/
 
-
-  this.doRender =  function(gameObject,gameRenderer)
-  {
-    this.render(gameObject,gameRenderer);
-    for(var i = 0; i < this.childObjectList.length; i++)
-    {
+  doRender(gameObject: GameObject, gameRenderer: GameRenderer) {
+    this.render(gameObject, gameRenderer);
+    for (var i = 0; i < this.childObjectList.length; i++) {
       var childGameObject = this.childObjectList[i];
-      childGameObject.doRender(childGameObject,gameRenderer);
+      childGameObject.doRender(childGameObject, gameRenderer);
     }
   }
 
   //override this
-  this.render =  function(gameObject,gameRenderer)
-  {
-
-  }
-
+  render(gameObject: GameObject, gameRenderer: GameRenderer) {}
+  /*
   this.intersect = function(invader)
   {
 
@@ -200,8 +198,7 @@ export default class GameObject {
     }
   }
   */
-  advance(time : number)
-  {
+  advance(time: number) {
     /*
     if(this.fuseOn)
     {

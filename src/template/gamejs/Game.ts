@@ -4,14 +4,11 @@ import GameObject from "./GameObject";
 import GameRenderer from "./GameRenderer";
 import GameState from "./GameState";
 
-export default class  Game
-{
-
+export default class Game {
   //@Deprecated
   extendedState = false;
 
   soundEnabled = false;
-
 
   //gameRenderer = new GameRenderer();
   gameState = new GameState();
@@ -26,13 +23,9 @@ export default class  Game
   firstTimeChecked = 0;
   maxCheckMediaTime = 1000;
   mediaList = [];
-  
-  constructor(private _gameRenderer: GameRenderer)
-  {
-    
-  }
-  setup()
-  {
+
+  constructor(private _gameRenderer: GameRenderer) {}
+  setup() {
     // this.gameIntro = {
     //   gameObjectList :  [],
 
@@ -45,66 +38,48 @@ export default class  Game
     this.gameAnimation.renderer = this.gameRenderer;
     this.gameControl.gameRenderer = this.gameRenderer;
   }
- 
- 
 
-
-  addGameObject(gameObject : GameObject)
-  {
-    this.gameState.gameObjectList.push(gameObject)
+  addGameObject(gameObject: GameObject) {
+    this.gameState.gameObjectList.push(gameObject);
   }
 
-  start()
-  {
-    this.gameAnimation.startAnimation();		
+  start() {
+    this.gameAnimation.startAnimation();
   }
-  start1()
-  {
-    this.loading = false;
-    this.gameAnimation.startAnimation();		
-  }
+  // start1()
+  // {
+  //   this.loading = false;
+  //   this.gameAnimation.startAnimation();
+  // }
 
-  stop()
-  {
-    this.gameAnimation.stopAnimation();		
+  stop() {
+    this.gameAnimation.stopAnimation();
   }
 
-
-  checkAllLoaded(theTime : number)
-  {
-    if(this.firstTimeChecked!=0)
-    {
-      if(theTime-this.firstTimeChecked > this.maxCheckMediaTime)
-      {
+  checkAllLoaded(theTime: number) {
+    if (this.firstTimeChecked != 0) {
+      if (theTime - this.firstTimeChecked > this.maxCheckMediaTime) {
         return true;
       }
-    }
-    else
-    {
+    } else {
       this.firstTimeChecked = theTime;
-    }		
+    }
   }
 
-  switchGameState(gameState : GameState)
-  {
+  switchGameState(gameState: GameState) {
     this.gameState.switchGameStateOut();
     this.gameState = gameState;
 
     this.gameState.bindControls(this.gameControl);
     this.gameState.switchGameStateIn();
-
   }
 
-  restart()
-  {
-
-  }
+  restart() {}
 
   public get gameRenderer(): GameRenderer {
-      return this._gameRenderer;
+    return this._gameRenderer;
   }
   public set gameRenderer(value: GameRenderer) {
-      this._gameRenderer = value;
+    this._gameRenderer = value;
   }
-
 }
