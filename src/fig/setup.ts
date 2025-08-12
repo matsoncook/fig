@@ -2,6 +2,7 @@ import Game from "../template/gamejs/Game";
 import GameRenderer from "../template/gamejs/GameRenderer";
 export default class FigGame
 {
+  game : Game | null = null;
     setupGame(canvas:HTMLCanvasElement,controlCanvas :HTMLCanvasElement,audio :any)
     {
       //testLineSegmentIntersecter();
@@ -18,7 +19,7 @@ export default class FigGame
           gameRenderer.staticImages[i].src="images/flowers/download0"+i+".png";
         }
 
-      let game = new Game(gameRenderer);
+      this.game = new Game(gameRenderer);
 
 
       /*

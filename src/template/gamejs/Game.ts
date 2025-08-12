@@ -6,12 +6,7 @@ import GameState from "./GameState";
 
 export default class  Game
 {
-  public get gameRenderer(): GameRenderer {
-      return this._gameRenderer;
-  }
-  public set gameRenderer(value: GameRenderer) {
-      this._gameRenderer = value;
-  }
+
   //@Deprecated
   extendedState = false;
 
@@ -22,7 +17,7 @@ export default class  Game
   gameState = new GameState();
   gameControl = new GameControl(this.gameRenderer);
   gameAnimation = new GameAnimation(this.gameState, this.gameRenderer);
-  gameIntro : any;
+  //gameIntro : any;
   //this.gameIntro = new GameIntro();
 
   loading = false;
@@ -38,14 +33,14 @@ export default class  Game
   }
   setup()
   {
-    this.gameIntro = {
-      gameObjectList :  [],
+    // this.gameIntro = {
+    //   gameObjectList :  [],
 
-      isNowPlaying : function()
-      {
-        return false;
-      }
-    };
+    //   isNowPlaying : function()
+    //   {
+    //     return false;
+    //   }
+    // };
     this.gameAnimation.state = this.gameState;
     this.gameAnimation.renderer = this.gameRenderer;
     this.gameControl.gameRenderer = this.gameRenderer;
@@ -103,6 +98,13 @@ export default class  Game
   restart()
   {
 
+  }
+
+  public get gameRenderer(): GameRenderer {
+      return this._gameRenderer;
+  }
+  public set gameRenderer(value: GameRenderer) {
+      this._gameRenderer = value;
   }
 
 }
