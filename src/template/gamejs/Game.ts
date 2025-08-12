@@ -34,8 +34,8 @@ export default class Game {
     //     return false;
     //   }
     // };
-    this.gameAnimation.state = this.gameState;
-    this.gameAnimation.renderer = this.gameRenderer;
+    this.gameAnimation.gameState = this.gameState;
+    this.gameAnimation.gameRenderer = this.gameRenderer;
     this.gameControl.gameRenderer = this.gameRenderer;
   }
 

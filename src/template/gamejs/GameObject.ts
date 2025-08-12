@@ -1,3 +1,4 @@
+import McImage from "../../image/Image";
 import { Point2d } from "../../transform/Point2d";
 import RectangleCentered2d from "../../transform/RectangleCentered2d";
 import GameRenderer from "./GameRenderer";
@@ -30,7 +31,7 @@ export default class GameObject {
   viewPort: any = null;
 
   loaded: boolean = false;
-  mcImage: any;
+  mcImage: McImage | null = null;
 
   constructor(
     private gameObjectType: number,

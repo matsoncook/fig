@@ -11,14 +11,16 @@ export default class GameAnimation {
     animationFrame : number = 0;
     canvas = null;
 
+   
+
     
     constructor( private _gameState: GameState, private _gameRenderer: GameRenderer)
     {
       
     }
 
-    moveOneTick()
-    {
+    moveOneTick= () => {
+    
 
 
         var gol = this._gameState.gameObjectList;
@@ -37,16 +39,8 @@ export default class GameAnimation {
         
     }
     startAnimation() {
-        window.requestAnimationFrame = (function() {
-          return window.requestAnimationFrame ||
-                 // window.webkitRequestAnimationFrame ||
-                 // window.mozRequestAnimationFrame ||
-                 // window.oRequestAnimationFrame ||
-                 // window.msRequestAnimationFrame ||
-                 function(callback : any,  element :any) {
-                   window.setTimeout(callback, 1000/60);
-                 };
-        })();
+
+        this.moveOneTick();
     }
     public get gameRenderer(): GameRenderer {
         return this._gameRenderer;

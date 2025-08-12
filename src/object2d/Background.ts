@@ -1,3 +1,4 @@
+import McImage from "../image/Image";
 import GameObject from "../template/gamejs/GameObject";
 import GameRenderer from "../template/gamejs/GameRenderer";
 
@@ -8,11 +9,13 @@ export default class Background
   {
     var atan45 = Math.atan(Math.PI / 4);
     var bg = new GameObject(3,"Background")
+    
     bg.render = function(gameObject : GameObject ,gameRenderer : GameRenderer)
     {
       if(gameObject.loaded)
       {
-        gameRenderer.context.drawImage(gameObject.mcImage.image,0, 0, gameRenderer.width, gameRenderer.height);
+        //TODO - remove ! in gameObject.mcImage!.image
+        gameRenderer.context.drawImage(gameObject.mcImage!.image,0, 0, gameRenderer.width, gameRenderer.height);
       }
       else
       {
@@ -20,6 +23,10 @@ export default class Background
       }
 
     }
+
+    bg.mcImage = McImage.createMcImage(source,()=>{
+      bg.loaded = true;
+    }).load();
     
     return bg;
   }

@@ -42,6 +42,7 @@ function intro()
   
   let intro = new Intro(figGame.game!);
   intro.createGameIntro();
+  intro.gameState.initialise();
 
   figGame.game!.gameState = intro.gameState;
   figGame.game!.setup();
@@ -51,7 +52,7 @@ function intro()
 setTimeout(() => {
   loader.stop();
   intro();
-}, 3000); 
+}, 500); 
 
 //intro();
 
