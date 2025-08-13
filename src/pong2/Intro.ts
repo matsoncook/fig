@@ -1,4 +1,5 @@
 import Background from "../object2d/Background";
+import StaticObject from "../object2d/StaticObject";
 import Game from "../template/gamejs/Game";
 import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
@@ -33,7 +34,7 @@ export default class Intro{
 
         for(var i = 0; i<this.game.gameRenderer.staticImageCount;i++)
         {
-          var so = createStaticObject(0,0,0.2,0.2,"staticImage"+i,this.game.gameRenderer.staticImages[i]);
+          var so = StaticObject.createStaticObject(0,0,0.2,0.2,"staticImage"+i,this.game.gameRenderer.staticImages[i]);
 
           this.gameState.staticObjectGroup.childObjectList.push(so);
 
@@ -192,6 +193,4 @@ export default class Intro{
 */
 }
 
-function createStaticObject(arg0: number, arg1: number, arg2: number, arg3: number, arg4: string, arg5: HTMLImageElement) : GameObject {
-    throw new Error("Function not implemented.");
-}
+
