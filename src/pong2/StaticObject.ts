@@ -1,13 +1,27 @@
 import GameObject from "../template/gamejs/GameObject";
+import Stepper from "../transform/Stepper";
 
 export default class StaticObject extends GameObject
 {
- 
-  static createStaticObject(arg0: number, arg1: number, arg2: number, arg3: number, arg4: string, arg5: HTMLImageElement) : StaticObject {
-    var staticObject = new StaticObject(0,arg4);
+  
+  static createStaticObject(posX: number, posY: number, sizeX: number, sizeY: number, name: string, staticImage: HTMLImageElement) : StaticObject {
+    var staticObject = new StaticObject(1,name);
 
+    staticObject.size.set(sizeX,sizeY);
+    staticObject.position.set(posX,posY);
+    staticObject.hitCount=0;
+    staticObject.staticImage = staticImage;
+
+    staticObject.verticalScaleStepper = new Stepper(0.8,1,0.01);
+    //TODO
+    // staticObject.verticalScaleStepper.current = .7+random.nextDouble()/3.3;
+    // staticObject.skewStepper = new Stepper(-0.1,.1,random.nextDouble()/50);
+    // staticObject.skewStepper.current = -0.1+random.nextDouble()/5;
+    
     return staticObject;
   }
+  staticImage: HTMLImageElement | null = null;
+  verticalScaleStepper = new Stepper(0.8,1,0.01);
 }
 /*
 function createStaticObject(posX,posY,sizeX,sizeY,name,staticImage,preInitialise)
