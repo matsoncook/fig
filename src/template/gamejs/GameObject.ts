@@ -100,7 +100,7 @@ export default class GameObject {
 */
 
   doRender(gameObject: GameObject, gameRenderer: GameRenderer) {
-    this.render(gameObject, gameRenderer);
+    this.render(gameRenderer);
     for (var i = 0; i < this.childObjectList.length; i++) {
       var childGameObject = this.childObjectList[i];
       childGameObject.doRender(childGameObject, gameRenderer);
@@ -108,7 +108,7 @@ export default class GameObject {
   }
 
   //override this
-  render(gameObject: GameObject, gameRenderer: GameRenderer) {
+  render(gameRenderer: GameRenderer) {
     
   }
   /*

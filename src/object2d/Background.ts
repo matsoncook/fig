@@ -37,7 +37,7 @@ export default class Background extends ImageObject
     super(WorldObjectType.Background,"Background");
     this.mcImage = null;
   }
-  render(gameObject : GameObject ,gameRenderer : GameRenderer)
+  render(gameRenderer : GameRenderer)
   {
     if(this.loaded)
       {
