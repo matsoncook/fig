@@ -2,8 +2,9 @@ import McImage from "../image/Image";
 import GameObject from "../template/gamejs/GameObject";
 import GameRenderer from "../template/gamejs/GameRenderer";
 import WorldObjectType from "../template/gamejs/WorldObjectType";
+import ImageObject from "./ImageObject";
 
-export default class Background extends GameObject
+export default class Background extends ImageObject
 {
 
   public static createBackgroundImageObject(source : string) : GameObject
@@ -11,19 +12,19 @@ export default class Background extends GameObject
     
     var bg = new Background();
     
-    bg.render = function(gameObject : GameObject ,gameRenderer : GameRenderer)
-    {
-      if(gameObject.loaded)
-      {
-        //TODO - remove ! in gameObject.mcImage!.image
-        gameRenderer.context.drawImage(gameObject.mcImage!.image,0, 0, gameRenderer.width, gameRenderer.height);
-      }
-      else
-      {
-        gameRenderer.context.clearRect(0, 0, gameRenderer.width, gameRenderer.height);
-      }
+    // bg.render = function(gameObject : GameObject ,gameRenderer : GameRenderer)
+    // {
+    //   if(gameObject.loaded)
+    //   {
+    //     //TODO - remove ! in gameObject.mcImage!.image
+    //     gameRenderer.context.drawImage(gameObject.mcImage!.image,0, 0, gameRenderer.width, gameRenderer.height);
+    //   }
+    //   else
+    //   {
+    //     gameRenderer.context.clearRect(0, 0, gameRenderer.width, gameRenderer.height);
+    //   }
 
-    }
+    // }
 
     bg.mcImage = McImage.createMcImage(source,()=>{
       bg.loaded = true;
@@ -35,6 +36,18 @@ export default class Background extends GameObject
   {
     super(WorldObjectType.Background,"Background");
     this.mcImage = null;
+  }
+  render(gameObject : GameObject ,gameRenderer : GameRenderer)
+  {
+    if(this.loaded)
+      {
+        //TODO - remove ! in gameObject.mcImage!.image
+        gameRenderer.context.drawImage(this.mcImage!.image,0, 0, gameRenderer.width, gameRenderer.height);
+      }
+      else
+      {
+        gameRenderer.context.clearRect(0, 0, gameRenderer.width, gameRenderer.height);
+      }
   }
   /*
   function createBackgroundImageObject(source)

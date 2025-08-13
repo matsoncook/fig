@@ -3,8 +3,8 @@ import WorldObjectType from "../template/gamejs/WorldObjectType";
 
 export default class ImageObject extends GameObject
   {
-    constructor(name : string)
+    constructor(worldObjectType : WorldObjectType = WorldObjectType.ImageObject, name : string)
     {
-      super(WorldObjectType.ImageObject,name)
+      super(worldObjectType,name)
     }
   }

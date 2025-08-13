@@ -108,7 +108,9 @@ export default class GameObject {
   }
 
   //override this
-  render(gameObject: GameObject, gameRenderer: GameRenderer) {}
+  render(gameObject: GameObject, gameRenderer: GameRenderer) {
+    
+  }
   /*
   this.intersect = function(invader)
   {
