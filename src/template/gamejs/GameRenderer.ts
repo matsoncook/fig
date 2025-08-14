@@ -1,3 +1,4 @@
+import { Point2d } from "../../transform/Point2d";
 import GameObject from "./GameObject";
 
 export default class GameRenderer {
@@ -9,6 +10,9 @@ export default class GameRenderer {
   staticImageCount = 8;
   staticImages : HTMLImageElement[] = [];
   time : number = 0;
+
+  sizeX = 1;
+  sizeY = 1;
 
   constructor(private canvas : HTMLCanvasElement, private controlCanvas : HTMLCanvasElement)
   {
@@ -132,13 +136,68 @@ export default class GameRenderer {
 
     //this.postRender();
 
-  };
+  }
 
   renderGameObject(gameObject : GameObject,context : CanvasRenderingContext2D)
   {
     gameObject.doRender(gameObject,this);
 
-  };
+  }
+
+  gameToCanvasP(fromPoint : Point2d,toPoint : Point2d)
+    {
+      toPoint.x = this.gameToCanvasX(fromPoint.x);
+      toPoint.y = this.gameToCanvasY(fromPoint.y);
+
+      return toPoint;
+
+    }
+
+  gameToCanvasX(gameX : number)
+    {
+      var halfSizeX = this.sizeX/2;
+      var px = (gameX + halfSizeX) * this.width;
+      return px;
+    }
+  gameToCanvasY(gameY : number)
+    {
+      var halfSizeY = this.sizeY/2;
+      var py = (halfSizeY - gameY) * this.height;
+      return py;
+    }
+  gameToCanvasSizeP(fromPoint : Point2d,toPoint : Point2d)
+    {
+      toPoint.x = this.gameToCanvasSizeX(fromPoint.x);
+      toPoint.y = this.gameToCanvasSizeY(fromPoint.y);
+
+      return toPoint;
+
+    }
+  gameToCanvasSizeX(gameSizeX : number)
+    {
+      var px = gameSizeX * this.width;
+      return px;
+    }
+  gameToCanvasSizeY(gameSizeY : number)
+    {
+      var px = gameSizeY * this.height;
+      return px;
+    }
+
+  canvasToGameX(canvasX : number)
+    {
+      var halfSizeX = this.sizeX/2;
+
+      var gameX = (canvasX/this.width) - halfSizeX
+      return gameX;
+    }
+  canvasToGameY(canvasY : number)
+    {
+      var halfSizeY = this.sizeY/2;
+
+      var gameY =  halfSizeY - (canvasY / this.height) ;
+      return gameY;
+    }
   /*
   this.gameToCanvasP = function(fromPoint,toPoint)
   {
