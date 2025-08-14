@@ -89,6 +89,7 @@ export default class StaticObject extends GameObject
 
 
     }
+}
  
 /*
 function createStaticObject(posX,posY,sizeX,sizeY,name,staticImage,preInitialise)

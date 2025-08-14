@@ -1,5 +1,5 @@
 import Background from "../object2d/Background";
-import StaticObject from "../object2d/StaticObject";
+import StaticObject from "../pong2/StaticObject";
 import Game from "../template/gamejs/Game";
 import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
@@ -26,12 +26,36 @@ export default class Intro{
       // this.backgroundMusic.play(true);
       // this.backgroundMusic.loop(true);
       // this.gameObjectList.push(this.backgroundMusic);
+
+      
     }
+    this.gameState.advance1 = 0;
+    this.gameState.advance = function(now : number)
+    {
+      var numberItems = this.staticObjectGroup.childObjectList.length;
+
+      for(var i = 0; i<numberItems;i++)
+      {
+        var rad = (i/numberItems) * Math.PI*2;
+        rad = rad + this.advance1;
+        //rad = rad %  Math.PI*2
+        //console.log(""+i+" " +rad)
+
+        var x = Math.cos(rad) / 2.5;
+        var y = Math.sin(rad) / 4;
+
+        this.staticObjectGroup.childObjectList[i].position.set2(x,y-0.15);
+
+
+      }
+      this.advance1 += 0.005;
+    }
+    
   }
 
   setupGameObjects()
       {
-
+        this.gameState.gameObjectList.push(this.gameState.staticObjectGroup);
         for(var i = 0; i<this.game.gameRenderer.staticImageCount;i++)
         {
           var so = StaticObject.createStaticObject(0,0,0.2,0.2,"staticImage"+i,this.game.gameRenderer.staticImages[i]);
@@ -40,7 +64,7 @@ export default class Intro{
 
 
         }
-/*
+
         var to = createTextObject2d("Play");
         to.setBold(true);
         to.size.set2(0.1,0.15);
@@ -48,7 +72,7 @@ export default class Intro{
         //to.setFontArial();
         to.setFontComicSansMS();
 
-        this.gameObjectList.push(to);
+        this.gameState.gameObjectList.push(to);
 
 
         var toh = createTextObject2d("Pumpkin Patch");
@@ -58,8 +82,8 @@ export default class Intro{
         //toh.setFontArial();
         toh.setFontComicSansMS();
 
-        this.gameObjectList.push(toh);
-        */
+        this.gameState.gameObjectList.push(toh);
+        
       }
   /*
   function createGameIntro()

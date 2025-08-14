@@ -14,6 +14,8 @@ export default class GameRenderer {
   sizeX = 1;
   sizeY = 1;
 
+  usingViewPort = false;
+
   constructor(private canvas : HTMLCanvasElement, private controlCanvas : HTMLCanvasElement)
   {
     this.context = canvas.getContext('2d') as CanvasRenderingContext2D;

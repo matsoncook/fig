@@ -3,14 +3,22 @@ import GameControl from "./GameControl";
 import GameObject from "./GameObject";
 
 export default class GameState {
+
+
+ 
+  gameObjectList : GameObject[] = [];
+  initialise: () => void = ()=>{};
+
+  
+  //TODO - this is for intro
+  advance1 = 0;
+  staticObjectGroup:  GroupObject = new GroupObject("Group");;
+   //---------------
   //render tree
   constructor()
   {
     this.gameObjectList.push(this.staticObjectGroup);
   }
-  gameObjectList : GameObject[] = [];
-  initialise: () => void = ()=>{};
-  staticObjectGroup:  GroupObject = new GroupObject("Group");;
   addGameObject(gameObject: GameObject) {
     this.gameObjectList.push(gameObject);
   }
