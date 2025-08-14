@@ -38,7 +38,7 @@ export default class TextObject extends GameObject
   //   to.name=name;
   //   return to;
   // }
-  static createTextObject2d(text : string)
+  static createTextObject2d(text : string) : TextObject
   {
 
 
@@ -68,6 +68,8 @@ export default class TextObject extends GameObject
     go.textAlign = "center";
     go.horizontalJustification = TextObject.HorizontalJustification.Center;
     go.verticalJustification = TextObject.VerticalJustification.Center;
+
+    return go;
 
   }
   setHorizontalJustification(horiz : number)
@@ -200,7 +202,7 @@ export default class TextObject extends GameObject
 
     }
 
-  setBold(isBold : string)
+  setBold(isBold : boolean)
     {
       if(isBold)
       {
