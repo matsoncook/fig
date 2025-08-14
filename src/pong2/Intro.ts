@@ -1,4 +1,5 @@
 import Background from "../object2d/Background";
+import TextObject from "../object2d/TextObject";
 import StaticObject from "../pong2/StaticObject";
 import Game from "../template/gamejs/Game";
 import GameObject from "../template/gamejs/GameObject";
@@ -65,7 +66,7 @@ export default class Intro{
 
         }
 
-        var to = createTextObject2d("Play");
+        var to = TextObject.createTextObject2d("Play");
         to.setBold(true);
         to.size.set2(0.1,0.15);
         to.position.set2(0,-0.15);
@@ -75,7 +76,7 @@ export default class Intro{
         this.gameState.gameObjectList.push(to);
 
 
-        var toh = createTextObject2d("Pumpkin Patch");
+        var toh = TextObject.createTextObject2d("Pumpkin Patch");
         toh.setBold(true);
         toh.size.set2(0.1,0.15);
         toh.position.set2(0,0.4);

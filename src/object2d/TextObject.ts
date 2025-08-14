@@ -143,16 +143,8 @@ export default class TextObject extends GameObject
         sizeX = this.screenSize.x;
         sizeY = this.screenSize.y;
       }
-      // else if(gameRenderer.usingViewPort )//gameRenderer
-      // {
-      //   var viewPort = gameRenderer.viewPort;
-      //   viewPort.viewPortToCanvasP(this.position,this.screenPosition);
-      //   viewPort.viewPortToCanvasSizeP(this.size,this.screenSize);
-      //   posX = this.screenPosition.x;
-      //   posY = this.screenPosition.y;
-      //   sizeX = this.screenSize.x;
-      //   sizeY = this.screenSize.y;
-      // }
+     
+        
       else
       {
         posX = gameRenderer.gameToCanvasX(this.position.x);
