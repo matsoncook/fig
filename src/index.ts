@@ -46,6 +46,7 @@ function intro()
   intro.setupGameObjects();
 
   figGame.game!.gameState = intro.gameState;
+  figGame.game!.gameIntro = intro.gameState;
   figGame.game!.setup();
   figGame.game!.start();
 }

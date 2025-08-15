@@ -11,7 +11,7 @@ export default class Intro{
   {
     
   }
-  createGameIntro()
+  createGameIntro() : GameState
   {
     //var gameState = new GameState();
     this.gameState.initialise = function()
@@ -51,6 +51,8 @@ export default class Intro{
       }
       this.advance1 += 0.005;
     }
+
+    return this.gameState
     
   }
 

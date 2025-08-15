@@ -22,22 +22,30 @@ export default class FigGame
       this.game = new Game(gameRenderer);
 
 
-      /*
-      game.gameRenderer.canvas = canvas;
-      game.gameControl.controlCanvas = controlCanvas;	
-      game.gameRenderer.setSize(window.innerWidth,window.innerHeight);
+     
+    }
 
-      game.gameRenderer.context = canvas.getContext('2d');
-      game.gameRenderer.staticImageCount = 8;
-      game.gameRenderer.staticImages = [];
-      for(var i = 0;i<game.gameRenderer.staticImageCount;i++)
-      {
-        game.gameRenderer.staticImages[i] = new Image();
-      }
-      for(var i = 0;i<game.gameRenderer.staticImageCount;i++)
-      {
-        game.gameRenderer.staticImages[i].src="images/flowers/download0"+i+".png";
-      }
-      */
+  setupIntro()
+  {
+    
+    //this.game.gameIntro = createGameIntro();
+    var game = this.game;
+
+
+    this.game!.gameIntro.bindControls = function(gameControl)
+    {
+      gameControl.doClickEvent = () => {
+        game!.switchGameState(game!.gameMain);
+
+      };
+      gameControl.doMouseDownEvent = function(){};
+      gameControl.doTouchStartEvent = function(){};
+      gameControl.doMouseMoveEvent = function(){};
+      gameControl.doTouchMoveEvent = function(){};
+      gameControl.doMouseUpEvent = gameControl.doClickEvent;
+      gameControl.doTouchEndEvent = gameControl.doClickEvent;
     }
   }
+  }
+
+

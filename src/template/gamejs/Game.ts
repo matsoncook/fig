@@ -15,7 +15,10 @@ export default class Game {
   gameControl = new GameControl(this.gameRenderer,this.gameRenderer.controlCanvas);
   gameAnimation = new GameAnimation(this.gameState, this.gameRenderer);
   //gameIntro : any;
-  //this.gameIntro = new GameIntro();
+
+  //TODO This may need to extended out
+  gameIntro = new GameState();
+  gameMain = new GameState();
 
   loading = false;
 
