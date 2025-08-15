@@ -2,6 +2,8 @@ import { Point2d } from "../../transform/Point2d";
 import GameObject from "./GameObject";
 
 export default class GameRenderer {
+
+    
   widthHeightRatio = 1;
   width : number = 100;
   height : number = 100;
@@ -16,9 +18,9 @@ export default class GameRenderer {
 
   usingViewPort = false;
 
-  constructor(private canvas : HTMLCanvasElement, private controlCanvas : HTMLCanvasElement)
+  constructor(private _canvas: HTMLCanvasElement, private _controlCanvas: HTMLCanvasElement)
   {
-    this.context = canvas.getContext('2d') as CanvasRenderingContext2D;
+    this.context = _canvas.getContext('2d') as CanvasRenderingContext2D;
   }
 
   /*
@@ -200,6 +202,18 @@ export default class GameRenderer {
       var gameY =  halfSizeY - (canvasY / this.height) ;
       return gameY;
     }
+  public get canvas(): HTMLCanvasElement {
+      return this._canvas;
+  }
+  public set canvas(value: HTMLCanvasElement) {
+      this._canvas = value;
+  }
+  public get controlCanvas(): HTMLCanvasElement {
+      return this._controlCanvas;
+  }
+  public set controlCanvas(value: HTMLCanvasElement) {
+      this._controlCanvas = value;
+  }
   /*
   this.gameToCanvasP = function(fromPoint,toPoint)
   {

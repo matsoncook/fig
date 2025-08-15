@@ -12,7 +12,7 @@ export default class Game {
 
   //gameRenderer = new GameRenderer();
   gameState = new GameState();
-  gameControl = new GameControl(this.gameRenderer);
+  gameControl = new GameControl(this.gameRenderer,this.gameRenderer.controlCanvas);
   gameAnimation = new GameAnimation(this.gameState, this.gameRenderer);
   //gameIntro : any;
   //this.gameIntro = new GameIntro();
@@ -37,6 +37,7 @@ export default class Game {
     this.gameAnimation.gameState = this.gameState;
     this.gameAnimation.gameRenderer = this.gameRenderer;
     this.gameControl.gameRenderer = this.gameRenderer;
+    this.gameControl.setupControls()
   }
 
   addGameObject(gameObject: GameObject) {
