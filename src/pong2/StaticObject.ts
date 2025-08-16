@@ -10,6 +10,8 @@ export default class StaticObject extends GameObject
 
   staticImage: HTMLImageElement | null = null;
   verticalScaleStepper = new Stepper(0.8,1,0.01);
+
+  stage = 0;
   
   static createStaticObject(posX: number, posY: number, sizeX: number, sizeY: number, name: string, staticImage: HTMLImageElement) : StaticObject {
     var staticObject = new StaticObject(1,name);

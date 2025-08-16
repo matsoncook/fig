@@ -1,6 +1,8 @@
 import Pong2GameState from "../pong2/Pong2GameState";
+import StaticObject from "../pong2/StaticObject";
 import Game from "../template/gamejs/Game";
 import GameRenderer from "../template/gamejs/GameRenderer";
+import Random from "../transform/Random";
 export default class FigGame
 {
   game : Game | null = null;
@@ -55,15 +57,16 @@ export default class FigGame
 
    
     game.gameMain = Pong2GameState.createPong2GameState(game);
-     /*
-    game.gameMain.advanceStaticObjects = function()
-    {
+    
+    // game.gameMain.advanceStaticObjects = function()
+    // {
 
-    }
-
-    game.gameMain.setupStaticGameObjects = function()
+    // }
+    var figGameState = game.gameMain as Pong2GameState;
+    figGameState.setupStaticGameObjects = function()
     {
       var t = new Random(Date.now());
+      var staticObjectCount = 0;
       for(var i = 0; i<10;i++)
       {
         for(var j = 0; j<4;j++)
@@ -74,29 +77,34 @@ export default class FigGame
           {
             var ii = -0.4+i*.1;
             var jj = 0+j*.1;
-            var so = createStaticObject(ii,jj,0.05,0.05,"staticImage"+i+"x"+j,game.gameRenderer.staticImages[staticObjectCount % game.gameRenderer.staticImageCount]);
+            var so = StaticObject.createStaticObject(ii,jj,0.05,0.05,"staticImage"+i+"x"+j,game.gameRenderer.staticImages[staticObjectCount % game.gameRenderer.staticImageCount]);
             //var so = createStaticObject(ii,jj,0.1,0.1);
             so.stage = 0;
             this.staticObjectGroup.childObjectList.push(so);
           }
 
         }
+        staticObjectCount++;
       }
+      
     }
-    game.gameMain.handleMaxHits = function(gameObject)
-    {
-      gameObject.stage++;
-      gameObject.hitCount =0;
-      if(gameObject.stage >2)
-      {
-        gameObject.stage = 3;
-      }
-      else
-      {
-        gameObject.size.add1(0.05);
-      }
+    figGameState.setupStaticGameObjects();
+    
+    // figGameState.handleMaxHits = function(gameObject)
+    // {
+    //   gameObject.stage++;
+    //   gameObject.hitCount =0;
+    //   if(gameObject.stage >2)
+    //   {
+    //     gameObject.stage = 3;
+    //   }
+    //   else
+    //   {
+    //     gameObject.size.add1(0.05);
+    //   }
 
-    }
+    // }
+/*
 
     game.gameMain.handleBallHit = function(ball)
     {
@@ -126,8 +134,11 @@ export default class FigGame
     }	
 
   }
+
   */
+
 }
+
 }
 
 

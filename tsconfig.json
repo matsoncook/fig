@@ -7,7 +7,9 @@
       "esModuleInterop": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
-      "outDir": "./tsc_out"
+      "outDir": "./tsc_out",
+      "sourceMap": true,
+      "inlineSources": true,
     },
     "include": ["src/**/*"]
   }

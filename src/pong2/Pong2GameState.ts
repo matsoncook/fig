@@ -32,7 +32,7 @@ export default class Pong2GameState extends GameState
       this.gameObjectList.unshift(backgroundObject);
       this.addGameObject(this.ballList);
 
-      this.setupStaticGameObjects();
+      //this.setupStaticGameObjects();
   }
 
 
@@ -49,6 +49,7 @@ export default class Pong2GameState extends GameState
 
   setupStaticGameObjects()
 	{
+    var staticObjectCount = 0;
 		var t = new Random(Date.now());
 		for(var i = 0; i<10;i++)
 		{
@@ -60,8 +61,8 @@ export default class Pong2GameState extends GameState
 				{
 					var ii = -0.45+i*.1;
 					var jj = 0+j*.1;
-					this.staticObjectGroup.childObjectList.push(StaticObject.createStaticObject(ii,jj,0.1,0.1,"staticImage"+i+"x"+j,this.game.gameRenderer.staticImages[this.staticObjectCount % this.game.gameRenderer.staticImageCount]));
-					//return;
+					this.staticObjectGroup.childObjectList.push(StaticObject.createStaticObject(ii,jj,0.1,0.1,"staticImage"+i+"x"+j,this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount]));
+					staticObjectCount++;
 				}
 
 			}
