@@ -1,12 +1,44 @@
+import Background from "../object2d/Background";
+import GroupObject from "../object2d/GroupObject";
 import GameState from "../template/gamejs/GameState";
+import Ball from "./Ball";
 
 export default class Pong2GameState extends GameState
+{
+  ballList =  new GroupObject("ball-list");
+  ballGroupMaxSize = 5;
+  static createPong2GameState()
   {
-    constructor()
+
+    var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
+    var gameState = new Pong2GameState(bg);
+    //Done in base class
+    //gameState.gameObjectList.push(gameState.staticObjectGroup);
+    
+
+
+  }
+
+  constructor( private backgroundObject : Background)
+  {
+      super();
+
+      this.addGameObject(backgroundObject);
+      this.addGameObject(this.ballList);
+  }
+
+
+  setupBallGameObjects()
+  {
+    for(var i = 0; i<this.ballGroupMaxSize;i++)
     {
-        super();
+      var ball = Ball.createBall();
+      ball.cull = true;
+
+      this.ballList.childObjectList.push(ball);
     }
   }
+}
 
 /*
 

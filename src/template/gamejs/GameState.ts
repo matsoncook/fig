@@ -12,7 +12,7 @@ export default class GameState {
   
   //TODO - this is for intro
   advance1 = 0;
-  staticObjectGroup:  GroupObject = new GroupObject("Group");;
+  staticObjectGroup:  GroupObject = new GroupObject("staticObjectGroup");;
    //---------------
   //render tree
   constructor()

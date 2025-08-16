@@ -1,5 +1,5 @@
 import GameState from "./GameState";
-import GameRenderer from "/home/runner/workspace/src/template/gamejs/GameRenderer";
+import GameRenderer from "./GameRenderer";
 
 export default class GameAnimation {
    
