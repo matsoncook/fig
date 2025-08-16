@@ -54,7 +54,7 @@ export default class FigGame
     let game = this.game!;
 
    
-    game.gameMain = Pong2GameState.createPong2GameState();
+    game.gameMain = Pong2GameState.createPong2GameState(game);
      /*
     game.gameMain.advanceStaticObjects = function()
     {

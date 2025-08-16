@@ -1,17 +1,23 @@
 import Background from "../object2d/Background";
 import GroupObject from "../object2d/GroupObject";
+import Game from "../template/gamejs/Game";
 import GameState from "../template/gamejs/GameState";
+import Random from "../transform/Random";
 import Ball from "./Ball";
+import StaticObject from "./StaticObject";
 
 export default class Pong2GameState extends GameState
 {
   ballList =  new GroupObject("ball-list");
   ballGroupMaxSize = 5;
-  static createPong2GameState() : Pong2GameState
+  staticObjectCount = 0;
+
+  //TODO - get rid of Game? - as only for static objects
+  static createPong2GameState(game : Game) : Pong2GameState
   {
 
     var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
-    var gameState = new Pong2GameState(bg);
+    var gameState = new Pong2GameState(game,bg);
     //Done in base class
     //gameState.gameObjectList.push(gameState.staticObjectGroup);
     
@@ -19,12 +25,14 @@ export default class Pong2GameState extends GameState
     return gameState;
   }
 
-  constructor( private backgroundObject : Background)
+  constructor( private game : Game,private backgroundObject : Background)
   {
       super();
 
-      this.addGameObject(backgroundObject);
+      this.gameObjectList.unshift(backgroundObject);
       this.addGameObject(this.ballList);
+
+      this.setupStaticGameObjects();
   }
 
 
@@ -38,6 +46,27 @@ export default class Pong2GameState extends GameState
       this.ballList.childObjectList.push(ball);
     }
   }
+
+  setupStaticGameObjects()
+	{
+		var t = new Random(Date.now());
+		for(var i = 0; i<10;i++)
+		{
+			for(var j = 0; j<5;j++)
+			{
+				var r = t.nextDouble();
+
+				if(r>0.5)
+				{
+					var ii = -0.45+i*.1;
+					var jj = 0+j*.1;
+					this.staticObjectGroup.childObjectList.push(StaticObject.createStaticObject(ii,jj,0.1,0.1,"staticImage"+i+"x"+j,this.game.gameRenderer.staticImages[this.staticObjectCount % this.game.gameRenderer.staticImageCount]));
+					//return;
+				}
+
+			}
+		}
+	}
 }
 
 /*

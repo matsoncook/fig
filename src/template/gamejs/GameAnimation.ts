@@ -1,5 +1,6 @@
 import GameState from "./GameState";
 import GameRenderer from "./GameRenderer";
+import Game from "./Game";
 
 export default class GameAnimation {
    
@@ -14,7 +15,7 @@ export default class GameAnimation {
    
 
     
-    constructor( private _gameState: GameState, private _gameRenderer: GameRenderer)
+    constructor( private _game: Game)
     {
       
     }
@@ -23,13 +24,13 @@ export default class GameAnimation {
     
 
 
-        var gol = this._gameState.gameObjectList;
-        var gr = this._gameRenderer;
-        var gs = this._gameState;
+        var gol = this._game.gameState.gameObjectList;
+        var gr = this._game.gameRenderer;
+        var gs = this._game.gameState;
 
         var now = Date.now();
         gs.advance(now);		
-        gr.render(now,this._gameRenderer.context,gol);
+        gr.render(now,this._game.gameRenderer.context,gol);
 
         this.animationFrame = window.requestAnimationFrame(this.moveOneTick);
 
@@ -42,19 +43,7 @@ export default class GameAnimation {
 
         this.moveOneTick();
     }
-    public get gameRenderer(): GameRenderer {
-        return this._gameRenderer;
-    }
-    public set gameRenderer(value: GameRenderer) {
-        this._gameRenderer = value;
-    }
-    public get gameState(): GameState {
-        return this._gameState;
-    }
-    public set gameState(value: GameState) {
-        this._gameState = value;
-    }
-
+   
 }
 
 /*
