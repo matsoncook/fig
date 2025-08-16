@@ -7,7 +7,7 @@ export default class Pong2GameState extends GameState
 {
   ballList =  new GroupObject("ball-list");
   ballGroupMaxSize = 5;
-  static createPong2GameState()
+  static createPong2GameState() : Pong2GameState
   {
 
     var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
@@ -16,7 +16,7 @@ export default class Pong2GameState extends GameState
     //gameState.gameObjectList.push(gameState.staticObjectGroup);
     
 
-
+    return gameState;
   }
 
   constructor( private backgroundObject : Background)

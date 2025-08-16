@@ -1,3 +1,4 @@
+import Pong2GameState from "../pong2/Pong2GameState";
 import Game from "../template/gamejs/Game";
 import GameRenderer from "../template/gamejs/GameRenderer";
 export default class FigGame
@@ -21,8 +22,9 @@ export default class FigGame
 
       this.game = new Game(gameRenderer);
 
-
-     
+        this.setupIntro();
+        this.setupMainGame();
+     this.game.switchGameState(this.game.gameIntro);
     }
 
   setupIntro()
@@ -50,8 +52,10 @@ export default class FigGame
   setupMainGame()
   {
     let game = this.game!;
-    /*
-    game.gameMain = createPong2GameState();
+
+   
+    game.gameMain = Pong2GameState.createPong2GameState();
+     /*
     game.gameMain.advanceStaticObjects = function()
     {
 
