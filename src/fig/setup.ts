@@ -46,6 +46,84 @@ export default class FigGame
       gameControl.doTouchEndEvent = gameControl.doClickEvent;
     }
   }
+
+  setupMainGame()
+  {
+    let game = this.game!;
+    /*
+    game.gameMain = createPong2GameState();
+    game.gameMain.advanceStaticObjects = function()
+    {
+
+    }
+
+    game.gameMain.setupStaticGameObjects = function()
+    {
+      var t = new Random(Date.now());
+      for(var i = 0; i<10;i++)
+      {
+        for(var j = 0; j<4;j++)
+        {
+          var r = t.nextDouble();
+          r = 1;
+          if(r>0.5)
+          {
+            var ii = -0.4+i*.1;
+            var jj = 0+j*.1;
+            var so = createStaticObject(ii,jj,0.05,0.05,"staticImage"+i+"x"+j,game.gameRenderer.staticImages[staticObjectCount % game.gameRenderer.staticImageCount]);
+            //var so = createStaticObject(ii,jj,0.1,0.1);
+            so.stage = 0;
+            this.staticObjectGroup.childObjectList.push(so);
+          }
+
+        }
+      }
+    }
+    game.gameMain.handleMaxHits = function(gameObject)
+    {
+      gameObject.stage++;
+      gameObject.hitCount =0;
+      if(gameObject.stage >2)
+      {
+        gameObject.stage = 3;
+      }
+      else
+      {
+        gameObject.size.add1(0.05);
+      }
+
+    }
+
+    game.gameMain.handleBallHit = function(ball)
+    {
+      ball.hitCount ++;
+      if(ball.hitCount>20)
+      {
+        ball.cull =true;
+      }
+      else
+      {
+        ball.size.scale(0.95);
+      }
+    }
+
+
+    game.gameMain.setup();
+
+    game.gameMain.bindControls = function(gameControl)
+    {
+      gameControl.doClickEvent = function(){};
+      gameControl.doMouseDownEvent = game.gameMain.startAim;
+      gameControl.doTouchStartEvent = game.gameMain.startAim;
+      gameControl.doMouseMoveEvent = game.gameMain.aim;
+      gameControl.doTouchMoveEvent = game.gameMain.aim;
+      gameControl.doMouseUpEvent = game.gameMain.fire;
+      gameControl.doTouchEndEvent = game.gameMain.fire;
+    }	
+
   }
+  */
+}
+}
 
 
