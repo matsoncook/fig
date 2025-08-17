@@ -3,6 +3,7 @@ enum WorldObjectType {
   ImageObject = 1,
   Background = 3,
   Text = 4,
+  AimerObject = 5,
   
   
 }

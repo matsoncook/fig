@@ -2,9 +2,14 @@ import GameObject from "../template/gamejs/GameObject";
 import WorldObjectType from "../template/gamejs/WorldObjectType";
 
 export default class Ball extends GameObject{
+    
     static createBall() : Ball
     {
         return new Ball(WorldObjectType.ImageObject,"Ball");
+    }
+
+	reset() {
+     
     }
 }
 

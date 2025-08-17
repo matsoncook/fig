@@ -34,6 +34,8 @@ export default class GameObject {
   loaded: boolean = false;
   mcImage: McImage | null = null;
 
+  stage:number =0;
+
   constructor(
     private gameObjectType: WorldObjectType,
     private name: string,

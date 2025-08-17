@@ -1,3 +1,4 @@
+import Ball from "../pong2/Ball";
 import Pong2GameState from "../pong2/Pong2GameState";
 import StaticObject from "../pong2/StaticObject";
 import Game from "../template/gamejs/Game";
@@ -90,23 +91,23 @@ export default class FigGame
     }
     figGameState.setupStaticGameObjects();
     
-    // figGameState.handleMaxHits = function(gameObject)
-    // {
-    //   gameObject.stage++;
-    //   gameObject.hitCount =0;
-    //   if(gameObject.stage >2)
-    //   {
-    //     gameObject.stage = 3;
-    //   }
-    //   else
-    //   {
-    //     gameObject.size.add1(0.05);
-    //   }
+    figGameState.handleMaxHits = function(gameObject)
+    {
+      gameObject.stage++;
+      gameObject.hitCount =0;
+      if(gameObject.stage >2)
+      {
+        gameObject.stage = 3;
+      }
+      else
+      {
+        gameObject.size.add1(0.05);
+      }
 
-    // }
-/*
+    }
 
-    game.gameMain.handleBallHit = function(ball)
+
+    figGameState.handleBallHit = function(ball:Ball)
     {
       ball.hitCount ++;
       if(ball.hitCount>20)
@@ -120,22 +121,22 @@ export default class FigGame
     }
 
 
-    game.gameMain.setup();
+    figGameState.setup();
 
-    game.gameMain.bindControls = function(gameControl)
+    figGameState.bindControls = function(gameControl)
     {
       gameControl.doClickEvent = function(){};
-      gameControl.doMouseDownEvent = game.gameMain.startAim;
-      gameControl.doTouchStartEvent = game.gameMain.startAim;
-      gameControl.doMouseMoveEvent = game.gameMain.aim;
-      gameControl.doTouchMoveEvent = game.gameMain.aim;
-      gameControl.doMouseUpEvent = game.gameMain.fire;
-      gameControl.doTouchEndEvent = game.gameMain.fire;
+      gameControl.doMouseDownEvent = figGameState.startAim;
+      gameControl.doTouchStartEvent = figGameState.startAim;
+      gameControl.doMouseMoveEvent = figGameState.aim;
+      gameControl.doTouchMoveEvent = figGameState.aim;
+      gameControl.doMouseUpEvent = figGameState.fire;
+      gameControl.doTouchEndEvent = figGameState.fire;
     }	
 
-  }
+  
 
-  */
+  
 
 }
 
