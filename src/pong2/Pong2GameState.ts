@@ -337,6 +337,30 @@ export default class Pong2GameState extends GameState
 
     }
   }
+
+  handleBallChangeDirection(){
+    for(var i = 0; i < this.ballList.childObjectList.length; i++ )
+    {
+      var ball = this.ballList.childObjectList[i];
+      ball.changeDirection(0.5,0.5);
+    }
+  }
+
+  isAllStaticObjectsDestroyed()
+  {
+    var allStaticObjectsDestroyed = true;
+    for(var j = 0; j < this.staticObjectGroup.childObjectList.length; j++ )
+    {
+      var staticObject = this.staticObjectGroup.childObjectList[j];
+
+      if(!staticObject.cull)
+      {
+        allStaticObjectsDestroyed = false;
+        break;
+      }
+    }
+    return allStaticObjectsDestroyed;
+  }
   
 }
 

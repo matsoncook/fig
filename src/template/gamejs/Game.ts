@@ -26,6 +26,7 @@ export default class Game {
   firstTimeChecked = 0;
   maxCheckMediaTime = 1000;
   mediaList = [];
+  gameWrapUp: GameState= new GameState();;
 
   constructor(private _gameRenderer: GameRenderer) {}
   setup() {
