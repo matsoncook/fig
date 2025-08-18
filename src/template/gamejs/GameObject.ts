@@ -114,6 +114,13 @@ export default class GameObject {
   render(gameRenderer: GameRenderer) {
     
   }
+
+  setFuse(fuse : number)
+  {
+    this.fuse = fuse;
+    this.fuseCount = fuse;
+    this.fuseOn = true;
+  }
   
   /*
   this.intersect = function(invader)

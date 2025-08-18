@@ -9,7 +9,11 @@ export default class Ball extends GameObject{
     }
 
 	reset() {
-     
+       this.hitCount = 0;
+		this.size.set(0.05,0.1);
+		this.position.set(0,-0.45);
+
+		this.velocity.set(0.01,0.01);
     }
 
 	changeDirection = function(boundsX : number,boundsY: number)

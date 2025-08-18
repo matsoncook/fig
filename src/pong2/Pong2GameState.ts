@@ -1,6 +1,7 @@
 import Aimer from "../object2d/Aimer";
 import Background from "../object2d/Background";
 import GroupObject from "../object2d/GroupObject";
+import TextObject from "../object2d/TextObject";
 import Game from "../template/gamejs/Game";
 import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
@@ -23,6 +24,9 @@ export default class Pong2GameState extends GameState
 
   previousSomeBallsInPlayState = false;
   isSomeBallsInPlayState = false;
+
+  score = 0;
+  scoreObject = new TextObject(WorldObjectType.Text,"ScoreText");
 
 
   //TODO - get rid of Game? - as only for static objects
@@ -84,9 +88,11 @@ export default class Pong2GameState extends GameState
 			}
 		}
 	}
-  handleMaxHits(gameObject : GameObject)
+  handleMaxHits(closestStaticObject : GameObject)
   {
-    throw new Error("handleMaxHits not implemented yet");
+     closestStaticObject.setFuse(20);
+     //closestStaticObject.destroySound.play();
+     this.addScore();
   }
    
   handleBallHit(ball:Ball)
@@ -140,7 +146,23 @@ export default class Pong2GameState extends GameState
     }
   }
   launch() {
-    throw new Error("Method not implemented.");
+    for(var i = 0; i<this.ballGroupMaxSize;i++)
+    {			
+      var ball = this.ballList.childObjectList[i] as Ball;
+      //console.log("x: "+ball.name);
+      if(ball.cull)
+      {
+        //ball.playLaunchSound();
+
+        ball.cull = false;
+        ball.reset();
+        ball.velocity.x = this.launchX;
+        ball.velocity.y = this.launchY;
+
+        ball.velocity.normalize().scale(0.01);
+        break;
+      }
+    }
   }
 
   switchGameStateIn()
@@ -372,6 +394,16 @@ export default class Pong2GameState extends GameState
       }
     }
     return allStaticObjectsDestroyed;
+  }
+
+  addScore()
+  {
+    this.score++;
+    this.scoreObject.text = "Score: "+this.score;
+  }
+  setScore()
+  {
+
   }
   
 }
