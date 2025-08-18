@@ -5,6 +5,7 @@ import GameRenderer from "./GameRenderer";
 import WorldObjectType from "./WorldObjectType";
 
 export default class GameObject {
+
   //gameObjectType : any;
   //name : string = "";
   childObjectList: GameObject[] = [];
@@ -113,6 +114,7 @@ export default class GameObject {
   render(gameRenderer: GameRenderer) {
     
   }
+  
   /*
   this.intersect = function(invader)
   {

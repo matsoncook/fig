@@ -1,5 +1,7 @@
 import GameObject from "../template/gamejs/GameObject";
 import GameRenderer from "../template/gamejs/GameRenderer";
+import LineSegmentIntersecter from "../transform/LineSegmentIntersecter";
+import { Point2d } from "../transform/Point2d";
 import Random from "../transform/Random";
 import Stepper from "../transform/Stepper";
 
@@ -12,6 +14,9 @@ export default class StaticObject extends GameObject
   verticalScaleStepper = new Stepper(0.8,1,0.01);
 
   stage = 0;
+  t = 0;
+  dirX: number = 0;
+  dirY: number = 0;
   
   static createStaticObject(posX: number, posY: number, sizeX: number, sizeY: number, name: string, staticImage: HTMLImageElement) : StaticObject {
     var staticObject = new StaticObject(1,name);
@@ -90,6 +95,90 @@ export default class StaticObject extends GameObject
     //drawRectCentered(context,posX,posY,sizeX,sizeY);
 
 
+    }
+    intersects(position: Point2d, velocity: Point2d) : boolean {
+    //  this.t = 2;
+    //   var ppv = Point2d.clonePoint2d(position).add(velocity);
+    // var l = new LineSegmentIntersecter();
+
+    // l.p0 = position;
+    // l.p1 = ppv;
+
+    // l.pp0 = new Point2d();
+    // l.pp1 = new Point2d();
+
+    // var hsx = this.size.x / 2;
+    // var hsy = this.size.y / 2;
+
+    // var x = this.position.x;
+    // var y = this.position.y;
+
+    // //repeat this
+    // l.pp0.set(x+hsx,y+hsy);
+    // l.pp1.set(x-hsx,y+hsy);
+
+    // if(velocity.y < 0 && l.intersects())
+    // {
+    //   //console.log(l.log());
+    //   if(l.t<this.t)
+    //   {
+    //     this.t = l.t;
+    //     this.dirX = 0;
+    //     this.dirY = 1;
+    //   }
+    // }
+    // //to here
+
+    // //repeat this
+    // l.pp0.set(x+hsx,y-hsy);
+    // l.pp1.set(x-hsx,y-hsy);
+
+    // if(velocity.y > 0 && l.intersects())
+    // {
+    //   //console.log(l.log());
+    //   if(l.t<this.t)
+    //   {
+    //     this.t = l.t;
+    //     this.dirX = 0;
+    //     this.dirY = -1;
+    //   }
+    // }
+    // //to here
+
+    // //repeat this
+    // l.pp0.set(x+hsx,y-hsy);
+    // l.pp1.set(x+hsx,y+hsy);
+
+    // if(velocity.x < 0 && l.intersects())
+    // {
+    //   //console.log(l.log());
+    //   if(l.t<this.t)
+    //   {
+    //     this.t = l.t;
+    //     this.dirX = +1;
+    //     this.dirY = 0;
+    //   }
+    // }
+    // //to here
+
+
+    // //repeat this
+    // l.pp0.set(x-hsx,y-hsy);
+    // l.pp1.set(x-hsx,y+hsy);
+
+    // if(velocity.x > 0 && l.intersects())
+    // {
+    //   //console.log(l.log());
+    //   if(l.t<this.t)
+    //   {
+    //     this.t = l.t;
+    //     this.dirX = -1;
+    //     this.dirY = 0;
+    //   }
+    // }
+    // //to here
+    // return this.t >= 0 && this.t <= 1;
+    return false;
     }
 }
  

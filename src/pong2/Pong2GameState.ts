@@ -235,6 +235,18 @@ export default class Pong2GameState extends GameState
 
 
   }
+  isStaticObjectAtFinishLine()
+  {
+     for(var j = 0; j < this.staticObjectGroup.childObjectList.length; j++ )
+    {
+      var staticObject = this.staticObjectGroup.childObjectList[j];
+
+      if(!staticObject.cull && staticObject.position.y < -0.4)
+      {
+        return true;
+      }
+    }
+  }
 
   isSomeBallsInPlay()
   {
@@ -271,7 +283,7 @@ export default class Pong2GameState extends GameState
     //check for hits
     for(var i = 0; i < this.ballList.childObjectList.length; i++ )
     {
-      var ball = this.ballList.childObjectList[i];
+      var ball = this.ballList.childObjectList[i] as Ball;
       if(ball.cull)continue;
       var intersectsCount = 0;
       var closestStaticObject = null;
@@ -279,7 +291,7 @@ export default class Pong2GameState extends GameState
       for(var j = 0; j < this.staticObjectGroup.childObjectList.length; j++ )
       {
 
-        var staticObject = this.staticObjectGroup.childObjectList[j];
+        var staticObject = this.staticObjectGroup.childObjectList[j] as StaticObject;
         if(staticObject.cull || staticObject.fuseOn) continue;
 
 
@@ -341,7 +353,7 @@ export default class Pong2GameState extends GameState
   handleBallChangeDirection(){
     for(var i = 0; i < this.ballList.childObjectList.length; i++ )
     {
-      var ball = this.ballList.childObjectList[i];
+      var ball = this.ballList.childObjectList[i] as Ball;
       ball.changeDirection(0.5,0.5);
     }
   }
