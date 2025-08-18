@@ -5,6 +5,8 @@ import { Point2d } from "../transform/Point2d";
 export default class Aimer extends GameObject{
     to:Point2d = new Point2d();
     visible = false;
+
+
     render(gameRenderer: GameRenderer)
     {
         if(!this.visible)return;
