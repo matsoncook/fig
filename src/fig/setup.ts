@@ -27,6 +27,15 @@ export default class FigGame
 
         this.setupIntro();
         this.setupMainGame();
+
+
+      
+	    gameRenderer.ballImage1.src = "images/flowers/drop01.png";
+	    gameRenderer.ballImage2.src = "images/flowers/drop00.png";
+	    gameRenderer.ballImage3.src = "images/flowers/drop02.png";
+
+
+
      this.game.switchGameState(this.game.gameIntro);
     }
 
@@ -87,6 +96,7 @@ export default class FigGame
         }
         staticObjectCount++;
       }
+      figGameState.setup();
       
     }
     figGameState.setupStaticGameObjects();

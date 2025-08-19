@@ -34,7 +34,9 @@ export default class GameState {
   }
   //replace this one
   beforeAdvance(time : number) {}
-  setup() {}
+  setup() {
+    
+  }
   switchGameStateOut() {}
 
   switchGameStateIn() {}

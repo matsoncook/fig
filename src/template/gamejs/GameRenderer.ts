@@ -18,6 +18,11 @@ export default class GameRenderer {
 
   usingViewPort = false;
 
+  //TODO fig specific
+  ballImage1 = new Image();
+  ballImage2 = new Image();
+  ballImage3 = new Image();
+
   constructor(private _canvas: HTMLCanvasElement, private _controlCanvas: HTMLCanvasElement)
   {
     this.context = _canvas.getContext('2d') as CanvasRenderingContext2D;

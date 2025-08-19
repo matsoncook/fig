@@ -54,7 +54,10 @@ export default class Pong2GameState extends GameState
       this.gameObjectList.push(this.aimer);
       this.aimer.position.set(0,-0.5);
   }
-
+ setup()
+ {
+  this.setupBallGameObjects();
+ }
 
   setupBallGameObjects()
   {
