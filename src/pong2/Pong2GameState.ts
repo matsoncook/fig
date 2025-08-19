@@ -110,7 +110,7 @@ export default class Pong2GameState extends GameState
     }
 
   }
-  aim(posX:number,posY:number)
+  aim = (posX:number,posY:number) =>
   {
     var aimer = this.aimer;
 
@@ -118,14 +118,14 @@ export default class Pong2GameState extends GameState
     aimer.to.set(posX,posY);
 
   }
-  startAim(posX:number,posY:number)
+  startAim = (posX:number,posY:number) =>
   {
     var aimer = this.aimer;
     aimer.visible = true;
     aimer.to.set(posX,posY);
 
   }
-  fire(posX:number,posY:number)
+  fire = (posX:number,posY:number) =>
   {
     if(this.allowFire)
     {
