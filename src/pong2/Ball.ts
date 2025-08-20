@@ -1,20 +1,30 @@
 import GameObject from "../template/gamejs/GameObject";
+import GameRenderer from "../template/gamejs/GameRenderer";
 import WorldObjectType from "../template/gamejs/WorldObjectType";
+import Stepper from "../transform/Stepper";
 
 export default class Ball extends GameObject{
     
     static createBall() : Ball
     {
-        return new Ball(WorldObjectType.ImageObject,"Ball");
+        return new Ball(WorldObjectType.ImageObject,"Ball").reset();
     }
-
-	reset() {
+	imageStepper = new Stepper(0,8,1);
+	reset() : Ball{
        this.hitCount = 0;
 		this.size.set(0.05,0.1);
 		this.position.set(0,-0.45);
 
 		this.velocity.set(0.01,0.01);
+		return this;
     }
+
+	beforeAdvance(time: number)
+	{
+
+		this.position.add(this.velocity);
+		
+	}
 
 	changeDirection = function(boundsX : number,boundsY: number)
 		{
@@ -48,6 +58,64 @@ export default class Ball extends GameObject{
 			// 	this.cullSound.play();
 			// }
 			
+		}
+		render(gameRenderer : GameRenderer)
+		{
+			if(this.cull)return;
+			var posX = gameRenderer.gameToCanvasX(this.position.x);
+			var posY = gameRenderer.gameToCanvasY(this.position.y);
+			var sizeX = gameRenderer.gameToCanvasSizeX(this.size.x);
+			var sizeY = gameRenderer.gameToCanvasSizeY(this.size.y);
+			var context = gameRenderer.context;
+			var halfSizeX = sizeX/2;
+			var halfSizeY = sizeY/2;
+			
+			//This could be encapsulated into its own class
+			context.save();
+			
+			//var rad = this.velocity.x / this.velocity.y;
+			var rad = Math.atan2(this.velocity.y, this.velocity.x);
+			
+			rad = Math.PI/2 - rad;
+		    //context.rotate(degrees*Math.PI/180);
+			context.translate(posX,posY);
+			context.rotate(rad);
+			
+			context.translate(-halfSizeX,-halfSizeY);
+			
+			//console.log("posX(" + posX + "," + posY + ") rad: "+ rad);
+			
+			// if(option1>=maxOption) option1 = 0;
+			
+			// option2 = Math.floor((option1)/divOption);
+			// option1++;
+			//TODO image stepper
+			var is = this.imageStepper.next();
+			
+			is = Math.floor(is/3);
+			
+			if(is == 0 ) context.drawImage(gameRenderer.ballImage1,0,0,sizeX,sizeY);
+			if(is == 1 ) context.drawImage(gameRenderer.ballImage2,0,0,sizeX,sizeY);
+			if(is == 2 ) context.drawImage(gameRenderer.ballImage3,0,0,sizeX,sizeY);
+			
+			
+			
+			context.restore();
+			
+			posX = gameRenderer.gameToCanvasX(this.position.x);
+			posY = gameRenderer.gameToCanvasY(this.position.y);
+			
+			//crossHairs01(context,posX,posY,sizeX,sizeY);
+			//drawRectCentered(context,posX,posY,sizeX,sizeY);
+			
+			// context.save();
+			// context.translate(posX,posY);
+			// context.rotate(rad);
+			
+
+			// crossHairs01(context,0,0,sizeX,sizeY);
+			// drawRectCentered(context,0,0,sizeX,sizeY);
+			// context.restore();
 		}
 }
 

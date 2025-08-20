@@ -163,16 +163,7 @@ export default class GameObject {
   {
     return false;
   }
-  //replace this one
-  this.beforeAdvance = function(time)
-  {
-
-  }
-  //replace this one
-  this.afterAdvance = function(time)
-  {
-
-  }
+ 
   this.traverseChildren = function(traverseFunction,reverse)
   {
     if(!reverse)
@@ -214,7 +205,7 @@ export default class GameObject {
   }
   */
   advance(time: number) {
-    /*
+  
     if(this.fuseOn)
     {
       this.fuse = this.fuse - 1;
@@ -232,7 +223,23 @@ export default class GameObject {
     }
     this.afterAdvance(time);
     this.previousTime = time;
-    */
+  
+  }
+
+   //replace this one
+  beforeAdvance(time: number)
+  {
+
+  }
+  //replace this one
+  afterAdvance(time: number)
+  {
+
+  }
+
+  handleFuseOut()
+  {
+    this.velocity.set(0,0);
   }
   /*
 
