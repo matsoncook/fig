@@ -5,10 +5,12 @@ import StaticObject from "../pong2/StaticObject";
 import Game from "../template/gamejs/Game";
 import GameRenderer from "../template/gamejs/GameRenderer";
 import Random from "../transform/Random";
+import FigGame from "./FigGame";
 import FigMainGameState from "./FigMainGameState";
-export default class FigGame
+export default class SetupFigGame
 {
-  game : Game | null = null;
+
+  game : FigGame | null = null;
     setupGame(canvas:HTMLCanvasElement,controlCanvas :HTMLCanvasElement,audio :any)
     {
       //testLineSegmentIntersecter();
@@ -25,7 +27,7 @@ export default class FigGame
           gameRenderer.staticImages[i].src="images/flowers/download0"+i+".png";
         }
 
-      this.game = new Game(gameRenderer);
+      this.game = new FigGame(gameRenderer);
 
         this.setupIntro();
         this.setupMainGame();
@@ -69,85 +71,9 @@ export default class FigGame
 
      var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
      
-    // game.gameMain = new FigMainGameState(game,bg);
-    // game.gameMain.setup();
+    game.gameMain = new FigMainGameState(game,bg);
+    game.gameMain.setup();
    
-    game.gameMain = Pong2GameState.createPong2GameState(game);
-    
-
-    var figGameState = game.gameMain as Pong2GameState;
-    figGameState.setupStaticGameObjects = function()
-    {
-      var t = new Random(Date.now());
-      var staticObjectCount = 0;
-      for(var i = 0; i<10;i++)
-      {
-        for(var j = 0; j<4;j++)
-        {
-          var r = t.nextDouble();
-          r = 1;
-          if(r>0.5)
-          {
-            var ii = -0.4+i*.1;
-            var jj = 0+j*.1;
-            var so = StaticObject.createStaticObject(ii,jj,0.05,0.05,"staticImage"+i+"x"+j,game.gameRenderer.staticImages[staticObjectCount % game.gameRenderer.staticImageCount]);
-            //var so = createStaticObject(ii,jj,0.1,0.1);
-            so.stage = 0;
-            this.staticObjectGroup.childObjectList.push(so);
-          }
-
-        }
-        staticObjectCount++;
-      }
-      figGameState.setup();
-      
-    }
-    figGameState.setupStaticGameObjects();
-    
-    figGameState.handleMaxHits = function(gameObject)
-    {
-      gameObject.stage++;
-      gameObject.hitCount =0;
-      if(gameObject.stage >2)
-      {
-        gameObject.stage = 3;
-      }
-      else
-      {
-        gameObject.size.add1(0.05);
-      }
-
-    }
-
-
-    figGameState.handleBallHit = function(ball:Ball)
-    {
-      ball.hitCount ++;
-      if(ball.hitCount>20)
-      {
-        ball.cull =true;
-      }
-      else
-      {
-        ball.size.scale(0.95);
-      }
-    }
-
-
-    figGameState.setup();
-
-    figGameState.bindControls = function(gameControl)
-    {
-      gameControl.doClickEvent = function(){};
-      gameControl.doMouseDownEvent = figGameState.startAim;
-      gameControl.doTouchStartEvent = figGameState.startAim;
-      gameControl.doMouseMoveEvent = figGameState.aim;
-      gameControl.doTouchMoveEvent = figGameState.aim;
-      gameControl.doMouseUpEvent = figGameState.fire;
-      gameControl.doTouchEndEvent = figGameState.fire;
-    }	
-
-  
 
   
 

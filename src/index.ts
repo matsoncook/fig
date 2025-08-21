@@ -1,3 +1,4 @@
+import SetupFigGame from "./fig/setup";
 import FigGame from "./fig/setup";
 import LoadHandler from "./loader/LoadHandler";
 import SwirlLoader from "./loader/SwirlLoader";
@@ -37,7 +38,7 @@ loader.drawLoadingProgress();
 
 function intro()
 {
-  let figGame = new FigGame();
+  let figGame = new SetupFigGame();
   figGame.setupGame(canvas,canvas,true);
   
   let intro = new Intro(figGame.game!);
