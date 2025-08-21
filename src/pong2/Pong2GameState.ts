@@ -42,7 +42,7 @@ export default class Pong2GameState extends GameState
     return gameState;
   }
 
-  constructor( private game : Game,private backgroundObject : Background)
+  constructor( public game : Game,private backgroundObject : Background)
   {
       super();
 
