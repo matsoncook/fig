@@ -13,10 +13,31 @@ export default class FigGame extends Game{
     {
 
         super(gameRenderer);
-    //     this.intro = new FigIntroGameState(this);
-    //     let bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
-    //     this.mainGame = new FigMainGameState(this,bg);
-    //     this.setup();
+        this.configureGameRenderer();
+        
+        this.gameIntro = new FigIntroGameState(this);
+        let bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
+        this.gameMain = new FigMainGameState(this,bg);
+        //this.setup();
+    }
+
+    configureGameRenderer()
+    {
+        let gameRenderer = this.gameRenderer;
+        gameRenderer.setSize(window.innerWidth,window.innerHeight);
+        gameRenderer.staticImageCount = 8;
+
+       for(var i = 0;i<gameRenderer.staticImageCount;i++)
+        {
+          gameRenderer.staticImages[i] = new Image();
+        }
+        for(var i = 0;i<gameRenderer.staticImageCount;i++)
+        {
+          gameRenderer.staticImages[i].src="images/flowers/download0"+i+".png";
+        }
+        gameRenderer.ballImage1.src = "images/flowers/drop01.png";
+        gameRenderer.ballImage2.src = "images/flowers/drop00.png";
+        gameRenderer.ballImage3.src = "images/flowers/drop02.png";
     }
 
     // setup()
