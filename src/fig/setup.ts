@@ -1,9 +1,11 @@
+import Background from "../object2d/Background";
 import Ball from "../pong2/Ball";
 import Pong2GameState from "../pong2/Pong2GameState";
 import StaticObject from "../pong2/StaticObject";
 import Game from "../template/gamejs/Game";
 import GameRenderer from "../template/gamejs/GameRenderer";
 import Random from "../transform/Random";
+import FigMainGameState from "./FigMainGameState";
 export default class FigGame
 {
   game : Game | null = null;
@@ -65,13 +67,14 @@ export default class FigGame
   {
     let game = this.game!;
 
+     var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
+     
+    // game.gameMain = new FigMainGameState(game,bg);
+    // game.gameMain.setup();
    
     game.gameMain = Pong2GameState.createPong2GameState(game);
     
-    // game.gameMain.advanceStaticObjects = function()
-    // {
 
-    // }
     var figGameState = game.gameMain as Pong2GameState;
     figGameState.setupStaticGameObjects = function()
     {
