@@ -1,10 +1,10 @@
 import FigGame from "./fig/FigGame";
 import FigIntroGameState from "./fig/FigIntroGameState";
-import SetupFigGame from "./fig/setup";
+
 
 import LoadHandler from "./loader/LoadHandler";
 import SwirlLoader from "./loader/SwirlLoader";
-import Intro from "./pong2/Intro";
+
 import GameRenderer from "./template/gamejs/GameRenderer";
 
 const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
