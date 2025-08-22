@@ -5,65 +5,106 @@ import Game from "../template/gamejs/Game";
 import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
 
-export default class Intro{
-  gameState = new GameState();
-  constructor(private game : Game)
+export default class Intro extends GameState{
+  //gameState = new GameState();
+
+  static createGameIntro(game : Game) : GameState
   {
+    return new Intro(game);
+  }
+  advance1 = 0;
+  constructor(public game : Game)
+  {
+    super();
+  }
+  initialise=()=>
+  {
+    var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
+    this.addGameObject(bg); 
+
+    //This is now done in the gameState constructor
+    //this.staticObjectGroup = new GameObject(0,"Group");
+    //this.gameObjectList.push(this.staticObjectGroup);
+
+    // this.backgroundMusic = createAudioObject("/audio/sa/cut2.mp3");
+    // this.backgroundMusic.play(true);
+    // this.backgroundMusic.loop(true);
+    // this.gameObjectList.push(this.backgroundMusic);
+
     
   }
-  createGameIntro() : GameState
+  advance(now : number)
   {
-    //var gameState = new GameState();
-    this.gameState.initialise = function()
+    var numberItems = this.staticObjectGroup.childObjectList.length;
+
+    for(var i = 0; i<numberItems;i++)
     {
-      var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
-      this.addGameObject(bg); 
+      var rad = (i/numberItems) * Math.PI*2;
+      rad = rad + this.advance1;
+      //rad = rad %  Math.PI*2
+      //console.log(""+i+" " +rad)
 
-      //This is now done in the gameState constructor
-      //this.staticObjectGroup = new GameObject(0,"Group");
-      //this.gameObjectList.push(this.staticObjectGroup);
+      var x = Math.cos(rad) / 2.5;
+      var y = Math.sin(rad) / 4;
 
-      // this.backgroundMusic = createAudioObject("/audio/sa/cut2.mp3");
-      // this.backgroundMusic.play(true);
-      // this.backgroundMusic.loop(true);
-      // this.gameObjectList.push(this.backgroundMusic);
+      this.staticObjectGroup.childObjectList[i].position.set2(x,y-0.15);
+
+
+    }
+  }
+  // createGameIntro() : GameState
+  // {
+    //var gameState = new GameState();
+    // this.gameState.initialise = function()
+    // {
+    //   var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
+    //   this.addGameObject(bg); 
+
+    //   //This is now done in the gameState constructor
+    //   //this.staticObjectGroup = new GameObject(0,"Group");
+    //   //this.gameObjectList.push(this.staticObjectGroup);
+
+    //   // this.backgroundMusic = createAudioObject("/audio/sa/cut2.mp3");
+    //   // this.backgroundMusic.play(true);
+    //   // this.backgroundMusic.loop(true);
+    //   // this.gameObjectList.push(this.backgroundMusic);
 
       
-    }
-    this.gameState.advance1 = 0;
-    this.gameState.advance = function(now : number)
-    {
-      var numberItems = this.staticObjectGroup.childObjectList.length;
+    // }
+    //this.gameState.advance1 = 0;
+    // this.gameState.advance = function(now : number)
+    // {
+    //   var numberItems = this.staticObjectGroup.childObjectList.length;
 
-      for(var i = 0; i<numberItems;i++)
-      {
-        var rad = (i/numberItems) * Math.PI*2;
-        rad = rad + this.advance1;
-        //rad = rad %  Math.PI*2
-        //console.log(""+i+" " +rad)
+    //   for(var i = 0; i<numberItems;i++)
+    //   {
+    //     var rad = (i/numberItems) * Math.PI*2;
+    //     rad = rad + this.advance1;
+    //     //rad = rad %  Math.PI*2
+    //     //console.log(""+i+" " +rad)
 
-        var x = Math.cos(rad) / 2.5;
-        var y = Math.sin(rad) / 4;
+    //     var x = Math.cos(rad) / 2.5;
+    //     var y = Math.sin(rad) / 4;
 
-        this.staticObjectGroup.childObjectList[i].position.set2(x,y-0.15);
+    //     this.staticObjectGroup.childObjectList[i].position.set2(x,y-0.15);
 
 
-      }
-      this.advance1 += 0.005;
-    }
+    //   }
+    //   this.advance1 += 0.005;
+    // }
 
-    return this.gameState
+   // return this.gameState
     
-  }
+  //}
 
   setupGameObjects()
       {
-        this.gameState.gameObjectList.push(this.gameState.staticObjectGroup);
+        this.gameObjectList.push(this.staticObjectGroup);
         for(var i = 0; i<this.game.gameRenderer.staticImageCount;i++)
         {
           var so = StaticObject.createStaticObject(0,0,0.2,0.2,"staticImage"+i,this.game.gameRenderer.staticImages[i]);
 
-          this.gameState.staticObjectGroup.childObjectList.push(so);
+          this.staticObjectGroup.childObjectList.push(so);
 
 
         }
@@ -75,7 +116,7 @@ export default class Intro{
         //to.setFontArial();
         to.setFontComicSansMS();
 
-        this.gameState.gameObjectList.push(to);
+        this.gameObjectList.push(to);
 
 
         var toh = TextObject.createTextObject2d("Pumpkin Patch");
@@ -85,7 +126,7 @@ export default class Intro{
         //toh.setFontArial();
         toh.setFontComicSansMS();
 
-        this.gameState.gameObjectList.push(toh);
+        this.gameObjectList.push(toh);
         
       }
   /*

@@ -1,13 +1,14 @@
+import Intro from "../pong2/Intro";
 import Game from "../template/gamejs/Game";
 import GameControl from "../template/gamejs/GameControl";
 import GameState from "../template/gamejs/GameState";
 
-export default class FigIntroGameState extends GameState
+export default class FigIntroGameState extends Intro
 {
-    constructor(private game : Game)
-    {
-        super();
-    }
+    // constructor(private game : Game)
+    // {
+    //     super(game);
+    // }
     bindControls(gameControl : GameControl)
     {
       gameControl.doClickEvent = () => {
