@@ -10,7 +10,8 @@ import GameRenderer from "./template/gamejs/GameRenderer";
 const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-function resizeCanvas() {
+function resizeCanvas() 
+{
   const dpr = window.devicePixelRatio || 1;
 
   // Set canvas size in physical pixels
@@ -38,22 +39,14 @@ loader.drawLoadingProgress();
 
 let gameRenderer = new GameRenderer(canvas,canvas);
 let figGame : FigGame = new FigGame(gameRenderer);
-figGame.switchGameState(figGame.gameIntro);
+
 
 
 
 function intro()
 {
-  // let figGame = new SetupFigGame();
-  // figGame.setupGame(canvas,canvas,true);
-  
-  let intro = new FigIntroGameState(figGame);
-  //intro.createGameIntro();
-  intro.initialise();
-  intro.setupGameObjects();
 
-  figGame.gameState = intro;
-  figGame.gameIntro = intro;
+  figGame.switchGameState(figGame.gameIntro);
   figGame.setup();
   figGame.start();
 }

@@ -15,7 +15,13 @@ export default class FigGame extends Game{
         super(gameRenderer);
         this.configureGameRenderer();
         
-        this.gameIntro = new FigIntroGameState(this);
+        let fgi = new FigIntroGameState(this);
+        fgi.initialise();
+        fgi.setupGameObjects();
+
+        this.gameIntro = fgi;
+
+
         let bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
         this.gameMain = new FigMainGameState(this,bg);
         //this.setup();

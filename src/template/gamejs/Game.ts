@@ -19,6 +19,7 @@ export default class Game {
   //TODO This may need to extended out
   gameIntro = new GameState();
   gameMain = new GameState();
+  gameWrapUp: GameState= new GameState();;
 
   loading = false;
 
@@ -26,7 +27,6 @@ export default class Game {
   firstTimeChecked = 0;
   maxCheckMediaTime = 1000;
   mediaList = [];
-  gameWrapUp: GameState= new GameState();;
 
   constructor(private _gameRenderer: GameRenderer) {}
   setup() {
