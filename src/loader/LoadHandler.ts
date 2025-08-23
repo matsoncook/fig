@@ -31,14 +31,15 @@ export default class LoadHandler {
   constructor(private canvas: HTMLCanvasElement, private context: CanvasRenderingContext2D, private loader: Loader) {
     this.drawLoadingProgress = this.drawLoadingProgress.bind(this);
   }
+
   setSize(windowInnerWidth: number, windowInnerHeight: number) {
 
 
     var width = windowInnerWidth;
     var height = windowInnerHeight;
 
-    this.canvas.width = width;
-    this.canvas.height = height
+    // this.canvas.width = width;
+    // this.canvas.height = height
 
 
 

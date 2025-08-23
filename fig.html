@@ -6,6 +6,7 @@
       body {
         overflow: hidden;
         height: 100%;
+        width: 100%;
         margin: 0;
         padding: 0;
       }
@@ -30,14 +31,14 @@
         overflow: hidden;
       }
 
-      canvas {
+      /* canvas {
         display: block;
         position: absolute;
         top: 0;
         left: 0;
-        width: 100vw;
-        height: 100vh;
-      }
+         width: 100vw;
+        height: 100vh; 
+      } */
     </style>
     <meta
       name="viewport"
@@ -60,11 +61,11 @@
     </script>
   </head>
   <body bgcolor="#ffffff">
-    <table align="center" height="100%">
+    <table align="center" height="100%"  width="100%">
         <tbody valign="middle">
             <tr>
                 <td align="center" valign="middle" width="100%">
-                    <div id="divcanvas" align="center">
+                    <div id="divcanvas" align="center"  height="100%"  width="100%">
                         <canvas
                             class="center-block unselectable"
                             id="myCanvas"
