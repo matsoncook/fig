@@ -105,4 +105,8 @@ export class Point2d {
   magnitude() {
     return Math.sqrt(this.dist2());
   }
+  clone()
+  {
+    return new Point2d(this.x,this.y);
+  }
 }

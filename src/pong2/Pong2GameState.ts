@@ -53,6 +53,8 @@ export default class Pong2GameState extends GameState
 
       this.gameObjectList.push(this.aimer);
       this.aimer.position.set(0,-0.5);
+
+      this.setup();
   }
  setup()
  {
@@ -148,7 +150,7 @@ export default class Pong2GameState extends GameState
       }			
     }
   }
-  launch() {
+  launch=()=> {
     for(var i = 0; i<this.ballGroupMaxSize;i++)
     {			
       var ball = this.ballList.childObjectList[i] as Ball;

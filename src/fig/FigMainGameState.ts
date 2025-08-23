@@ -16,7 +16,8 @@ export default class FigMainGameState extends Pong2GameState
     }
     setup()
     {
-        this.setupStaticGameObjects()
+        this.setupStaticGameObjects();
+        super.setup();
     }
     setupStaticGameObjects()
     {

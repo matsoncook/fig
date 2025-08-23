@@ -26,37 +26,37 @@ export default class Ball extends GameObject{
 		
 	}
 
-	changeDirection = function(boundsX : number,boundsY: number)
+	changeDirection(boundsX : number,boundsY: number)
 		{
 
-			// if(this.position.x > boundsX)
-			// {	
-			// 	this.velocity.x = -this.velocity.x;
-			// 	this.position.x = boundsX - (this.position.x - boundsX);
-			// 	this.hitCount++;
-			// }
-			// if(this.position.x < -boundsX)
-			// {			
-			// 	this.velocity.x = -this.velocity.x;
-			// 	this.position.x = -boundsX + (this.position.x + boundsX);
-			// 	this.hitCount++;
-			// }
+			if(this.position.x > boundsX)
+			{	
+				this.velocity.x = -this.velocity.x;
+				this.position.x = boundsX - (this.position.x - boundsX);
+				this.hitCount++;
+			}
+			if(this.position.x < -boundsX)
+			{			
+				this.velocity.x = -this.velocity.x;
+				this.position.x = -boundsX + (this.position.x + boundsX);
+				this.hitCount++;
+			}
 			
-			// if(this.position.y > boundsY)
-			// {			
-			// 	this.velocity.y = -this.velocity.y;
-			// 	this.position.y = boundsY - (this.position.y - boundsY);
-			// 	this.hitCount++;
-			// }
-			// if(this.position.y < -boundsY)
-			// {
-			// 	// this.velY = - this.velY;
-			// 	// this.posY = -boundsY + (this.posY + boundsY  );
-			// 	this.reset();
-			// 	this.velocity.set(0,0);
-			// 	this.cull = true;
-			// 	this.cullSound.play();
-			// }
+			if(this.position.y > boundsY)
+			{			
+				this.velocity.y = -this.velocity.y;
+				this.position.y = boundsY - (this.position.y - boundsY);
+				this.hitCount++;
+			}
+			if(this.position.y < -boundsY)
+			{
+				// this.velY = - this.velY;
+				// this.posY = -boundsY + (this.posY + boundsY  );
+				this.reset();
+				this.velocity.set(0,0);
+				this.cull = true;
+				//this.cullSound.play();
+			}
 			
 		}
 		render(gameRenderer : GameRenderer)
