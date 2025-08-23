@@ -51,6 +51,7 @@ export default class Intro extends GameState{
 
 
     }
+    this.advance1 += 0.005;
   }
   // createGameIntro() : GameState
   // {
