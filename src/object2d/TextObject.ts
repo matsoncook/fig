@@ -28,7 +28,7 @@ export default class TextObject extends GameObject
   screenPosition = new Point2d();
   screenSize = new Point2d();
 
-  textAlign = "center";
+  textAlign : CanvasTextAlign = "center";
   horizontalJustification = TextObject.HorizontalJustification.Center;
   verticalJustification = TextObject.VerticalJustification.Center;
 
@@ -172,7 +172,7 @@ export default class TextObject extends GameObject
 
 
         context.fillStyle = this.fillStyle;
-        //context.textAlign = CanvasTex;
+        context.textAlign = this.textAlign;
 
         context.strokeText(this.text,0,0);
         context.fillText(this.text,0,0);
@@ -183,7 +183,7 @@ export default class TextObject extends GameObject
       {
 
 
-        //context.textAlign = this.textAlign;
+        context.textAlign = this.textAlign;
         if(this.doStroke)
         {
           context.lineWidth = this.lineWidth;
