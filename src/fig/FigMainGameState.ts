@@ -83,4 +83,8 @@ export default class FigMainGameState extends Pong2GameState
       gameControl.doMouseUpEvent = this.fire;
       gameControl.doTouchEndEvent = this.fire;
     }	
+
+    advanceStaticObjects(): void {
+      //override this so no advance
+    }
 }
