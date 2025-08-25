@@ -23,7 +23,7 @@ export default class FigMainGameState extends Pong2GameState
     {
       var t = new Random(Date.now());
       var staticObjectCount = 0;
-      for(var i = 0; i<10;i++)
+      for(var i = 0; i<7;i++)
       {
         for(var j = 0; j<4;j++)
         {
