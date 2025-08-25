@@ -1,4 +1,4 @@
-import McImage from "../../image/Image";
+import McImage from "../../image/McImage";
 import { Point2d } from "../../transform/Point2d";
 import RectangleCentered2d from "../../transform/RectangleCentered2d";
 import GameRenderer from "./GameRenderer";

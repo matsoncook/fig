@@ -1,4 +1,4 @@
-import McImage from "../image/Image";
+import McImage from "../image/McImage";
 import GameObject from "../template/gamejs/GameObject";
 import GameRenderer from "../template/gamejs/GameRenderer";
 import WorldObjectType from "../template/gamejs/WorldObjectType";

@@ -19,7 +19,7 @@ export default class  McImage
     // });
     return mcImage.load();
   }
-  constructor(private source : string,onLoadedFunction : ()=>void)
+  constructor(private source : string,onLoadedFunction : ()=>void, autoLoad = true)
   {
     this.image = new Image();
 
@@ -31,6 +31,12 @@ export default class  McImage
     this.image .addEventListener("error", () => {
       console.error("❌ Failed to load image.");
     });
+
+    
+    if(autoLoad)
+    {
+      this.load();
+    }
   }
 
  
