@@ -7,17 +7,25 @@ import GameControl from "../template/gamejs/GameControl";
 import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
 import Random from "../transform/Random";
+import Hose from "./object2d/Hose";
 
 export default class FigMainGameState extends Pong2GameState
 {
+    hose : Hose | null = null;
     constructor(game : Game, background: Background)
     {
+      
         super(game,background);
+        
+        
     }
     setup()
     {
+      
         this.setupStaticGameObjects();
         super.setup();
+        this.hose = new Hose("images/flowers/hose.png");
+        this.gameObjectList.push(this.hose!);
     }
     setupStaticGameObjects()
     {
