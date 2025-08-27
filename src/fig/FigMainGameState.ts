@@ -11,7 +11,7 @@ import Hose from "./object2d/Hose";
 
 export default class FigMainGameState extends Pong2GameState
 {
-    hose : Hose | null = null;
+    
     constructor(game : Game, background: Background)
     {
       

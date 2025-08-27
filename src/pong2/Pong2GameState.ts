@@ -1,3 +1,4 @@
+import Hose from "../fig/object2d/Hose";
 import Aimer from "../object2d/Aimer";
 import Background from "../object2d/Background";
 import GroupObject from "../object2d/GroupObject";
@@ -27,6 +28,8 @@ export default class Pong2GameState extends GameState
 
   score = 0;
   scoreObject = new TextObject(WorldObjectType.Text,"ScoreText");
+
+  hose : Hose | null = null;
 
 
   //TODO - get rid of Game? - as only for static objects
@@ -122,12 +125,19 @@ export default class Pong2GameState extends GameState
     //aimer.visible = true;
     aimer.to.set(posX,posY);
 
+    let hose = this.hose! as Hose;
+    hose.to.set(posX,posY);
+
   }
   startAim = (posX:number,posY:number) =>
   {
     var aimer = this.aimer;
     aimer.visible = true;
     aimer.to.set(posX,posY);
+
+    let hose = this.hose! as Hose;
+    hose.to.set(posX,posY);
+
 
   }
   fire = (posX:number,posY:number) =>

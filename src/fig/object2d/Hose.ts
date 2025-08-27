@@ -2,8 +2,10 @@ import McImage from "../../image/McImage";
 import ImageObject from "../../object2d/ImageObject";
 import GameRenderer from "../../template/gamejs/GameRenderer";
 import WorldObjectType from "../../template/gamejs/WorldObjectType";
+import { Point2d } from "../../transform/Point2d";
 export default class Hose extends ImageObject{
-
+    to : Point2d = new Point2d();
+    vector : Point2d = new Point2d();
     constructor(source : string)
     {
         super(WorldObjectType.ImageObject,"Hose");
@@ -24,21 +26,23 @@ export default class Hose extends ImageObject{
         var sizeX = gameRenderer.gameToCanvasSizeX(this.size.x);
         var sizeY = gameRenderer.gameToCanvasSizeY(this.size.y);
         var context = gameRenderer.context;
-        var halfSizeX = sizeX/2;
+        var halfSizeX = sizeX;
         var halfSizeY = sizeY/2;
         
         //This could be encapsulated into its own class
         context.save();
         
+        this.vector.set1(this.position);
+        this.vector.subtract(this.to);
         //var rad = this.velocity.x / this.velocity.y;
-        var rad = Math.atan2(this.velocity.y, this.velocity.x);
+        var rad = Math.atan2(this.vector.y, this.vector.x);
         
         rad = Math.PI/2 - rad;
         //context.rotate(degrees*Math.PI/180);
-        context.translate(posX,posY);
+        context.translate(posX,posY-sizeY);
         context.rotate(rad);
         
-        context.translate(-halfSizeX,-halfSizeY);
+        //context.translate(0,0);
         
         
         context.drawImage(this.mcImage!.image,0,0,sizeX,sizeY)
