@@ -32,17 +32,18 @@ export default class Hose extends ImageObject{
         //This could be encapsulated into its own class
         context.save();
         
-        this.vector.set1(this.position);
-        this.vector.subtract(this.to);
-        //var rad = this.velocity.x / this.velocity.y;
+        this.vector.set1(this.to);
+        this.vector.subtract(this.position);
+
         var rad = Math.atan2(this.vector.y, this.vector.x);
-        
-        rad = Math.PI/2 - rad;
-        //context.rotate(degrees*Math.PI/180);
-        context.translate(posX,posY-sizeY);
+        // rad = rad + Math.PI;
+        rad = -((rad) +(Math.PI/2));
+
+     
+        context.translate(posX,posY);
         context.rotate(rad);
-        
-        //context.translate(0,0);
+        context.translate(-sizeX/2,0);
+
         
         
         context.drawImage(this.mcImage!.image,0,0,sizeX,sizeY)
