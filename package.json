@@ -5,7 +5,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc && npx webpack",
-    "watch": "npx webpack --watch --mode=development"
+    "watch": "npx webpack --watch --mode=development",
+    "serve": "node server.js",
+    "serve:watch": "nodemon --watch server.js --watch dist --ext js,json --signal SIGTERM server.js",
+    "browsersync": "browser-sync start --proxy http://localhost:3000 --files \"dist/**/*,public/**/*,views/**/*\" --no-ui --no-open --port 3001",
+    "dev": "concurrently -k -n WP,SRV,BS \"npm:watch\" \"npm:serve:watch\" \"npm:browsersync\""
   },
   "keywords": [],
   "author": "",
@@ -13,6 +17,8 @@
   "description": "",
   "devDependencies": {
     "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10",
     "ts-loader": "^9.5.2",
     "webpack": "^5.100.2",
     "webpack-cli": "^6.0.1"
