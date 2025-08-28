@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 
 // Replit uses a system-assigned port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Use __dirname to resolve relative paths
 const mapDir = path.join(__dirname, "web", "map");

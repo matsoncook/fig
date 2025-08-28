@@ -4,14 +4,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "npx tsc && npx webpack",
-    "watch" : "npx webpack --watch --mode=development"
+    "build": "npx tsc && npx webpack",
+    "watch": "npx webpack --watch --mode=development"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "browser-sync": "^3.0.4",
     "ts-loader": "^9.5.2",
     "webpack": "^5.100.2",
     "webpack-cli": "^6.0.1"
