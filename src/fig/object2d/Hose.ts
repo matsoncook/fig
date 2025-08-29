@@ -9,6 +9,7 @@ export default class Hose extends ImageObject{
     to : Point2d = new Point2d();
     vector : Point2d = new Point2d();
     tip : Point2d = new Point2d();
+    rotateRad : number = 0;
     constructor(source : string)
     {
         super(WorldObjectType.ImageObject,"Hose");
@@ -42,7 +43,7 @@ export default class Hose extends ImageObject{
         // rad = rad + Math.PI;
         rad = -((rad) +(Math.PI/2));
 
-
+        this.rotateRad = rad;
      
         context.translate(posX,posY);
         context.rotate(rad);
@@ -65,6 +66,34 @@ export default class Hose extends ImageObject{
     }
 
     drawTip(gameRenderer : GameRenderer)
+    {
+        let vec = new Point2d(0,this.size.y);
+        vec.rotate(this.rotateRad);
+        vec.scale2(-1,1);
+        this.tip.set1(this.position);
+        this.tip.subtract(vec);
+
+        var posX = gameRenderer.gameToCanvasX(this.tip.x);
+        var posY = gameRenderer.gameToCanvasY(this.tip.y);
+
+        var context = gameRenderer.context;
+        context.save();
+
+        context.translate(posX,posY);
+
+        context.beginPath();
+        context.arc(0, 0, 20, 0, Math.PI * 2); // full circle
+        context.fillStyle = 'orange';
+        context.fill();
+        context.lineWidth = 4;
+        context.strokeStyle = '#333';
+        context.stroke();
+
+        context.restore();
+
+    }
+
+    drawTip1(gameRenderer : GameRenderer)
     {
         var posX = gameRenderer.gameToCanvasX(this.position.x);
         var posY = gameRenderer.gameToCanvasY(this.position.y);

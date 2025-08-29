@@ -109,4 +109,15 @@ export class Point2d {
   {
     return new Point2d(this.x,this.y);
   }
+
+  rotate(rad: number): Point2d {
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+    const xNew = this.x * cos - this.y * sin;
+    const yNew = this.x * sin + this.y * cos;
+    this.x = xNew;
+    this.y = yNew;
+
+    return this;
+}
 }
