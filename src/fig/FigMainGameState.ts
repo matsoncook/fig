@@ -41,7 +41,9 @@ export default class FigMainGameState extends Pong2GameState
           {
             var ii = -0.4+i*.1;
             var jj = 0+j*.1;
-            var so = StaticObject.createStaticObject(ii,jj,0.05,0.05,"staticImage"+i+"x"+j,this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount]);
+            var staticImageStr = "staticImage"+i+"x"+j;
+            var stc = this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount];
+            var so = StaticObject.createStaticObject(ii,jj,0.05,0.05,staticImageStr,stc);
             //var so = createStaticObject(ii,jj,0.1,0.1);
             so.stage = 0;
             this.staticObjectGroup.childObjectList.push(so);
@@ -52,6 +54,10 @@ export default class FigMainGameState extends Pong2GameState
       }
  
       
+    }
+    placeSaticImageRandom()
+    {
+      console.log("hello");
     }
 
     handleMaxHits(gameObject : GameObject)
