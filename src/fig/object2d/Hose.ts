@@ -33,6 +33,7 @@ export default class Hose extends ImageObject{
         var halfSizeX = sizeX;
         var halfSizeY = sizeY/2;
         
+        this.calculateTip();
         //This could be encapsulated into its own class
         context.save();
         
@@ -63,6 +64,15 @@ export default class Hose extends ImageObject{
         posX = gameRenderer.gameToCanvasX(this.position.x);
         posY = gameRenderer.gameToCanvasY(this.position.y);
         
+    }
+
+    calculateTip()
+    {
+        let vec = new Point2d(0,this.size.y);
+        vec.rotate(this.rotateRad);
+        vec.scale2(-1,1);
+        this.tip.set1(this.position);
+        this.tip.subtract(vec);
     }
 
     drawTip(gameRenderer : GameRenderer)

@@ -152,6 +152,16 @@ export default class Pong2GameState extends GameState
 
       this.launchX = aimer.to.x - aimer.position.x;
       this.launchY = aimer.to.y - aimer.position.y;
+
+      let hose = this.hose! as Hose;
+      let origin = hose.tip;
+
+      for(var i = 0; i<this.ballGroupMaxSize;i++)
+      {			
+        var ball = this.ballList.childObjectList[i] as Ball;
+        ball.origin = origin;
+      }
+
       this.launch();
 
       for(var i = 0; i<5 ; i++)

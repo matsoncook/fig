@@ -1,10 +1,11 @@
 import GameObject from "../template/gamejs/GameObject";
 import GameRenderer from "../template/gamejs/GameRenderer";
 import WorldObjectType from "../template/gamejs/WorldObjectType";
+import { Point2d } from "../transform/Point2d";
 import Stepper from "../transform/Stepper";
 
 export default class Ball extends GameObject{
-    
+    origin = new Point2d(0,-0.45);
     static createBall() : Ball
     {
         return new Ball(WorldObjectType.ImageObject,"Ball").reset();
@@ -13,7 +14,7 @@ export default class Ball extends GameObject{
 	reset() : Ball{
        this.hitCount = 0;
 		this.size.set(0.05,0.1);
-		this.position.set(0,-0.45);
+		this.position.set1(this.origin);
 
 		this.velocity.set(0.01,0.01);
 		return this;
