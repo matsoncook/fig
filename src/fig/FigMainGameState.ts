@@ -7,6 +7,7 @@ import GameControl from "../template/gamejs/GameControl";
 import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
 import Random from "../transform/Random";
+import RectanglePlacement from "../transform/RectanglePlacement";
 import Hose from "./object2d/Hose";
 
 export default class FigMainGameState extends Pong2GameState
@@ -42,16 +43,43 @@ export default class FigMainGameState extends Pong2GameState
             var ii = -0.4+i*.1;
             var jj = 0+j*.1;
             var staticImageStr = "staticImage"+i+"x"+j;
-            var stc = this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount];
-            var so = StaticObject.createStaticObject(ii,jj,0.05,0.05,staticImageStr,stc);
-            //var so = createStaticObject(ii,jj,0.1,0.1);
-            so.stage = 0;
-            this.staticObjectGroup.childObjectList.push(so);
+            // var stc = this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount];
+            // var so = StaticObject.createStaticObject(ii,jj,0.05,0.05,staticImageStr,stc);
+            // so.stage = 0;
+            // this.staticObjectGroup.childObjectList.push(so);
           }
 
         }
         staticObjectCount++;
       }
+      let randomPlacement = new RectanglePlacement({x:0.1,y:0.1,w:0.9,h:0.6},0.05,0.05,0,0);
+      randomPlacement.addRectangle({x:0.5,y:0.5,w:0.05,h:0.05});
+
+      var staticObjectCount = 0;
+      for(var i =0; i<20; i++)
+      {
+        let rect = randomPlacement.randomPlace();
+        if(rect != null)
+        {
+          randomPlacement.addRectangle(rect);
+          console.log("randomPlacement: ", rect);
+          var staticImageStr = "staticImage"+i;
+          var stc = this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount];
+          //var so = StaticObject.createStaticObject(rect.x - 0.5, rect.y -0.5, 0.05, 0.05, staticImageStr, stc);
+          var so = StaticObject.createStaticObject(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc);
+          so.stage = 0;
+          this.staticObjectGroup.childObjectList.push(so);
+        }
+        else
+        {
+          break;
+        }
+
+        staticObjectCount++;
+      }
+      
+
+      
  
       
     }
