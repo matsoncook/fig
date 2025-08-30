@@ -5,6 +5,8 @@ import WorldObjectType from "../../template/gamejs/WorldObjectType";
 
 export default class Sun extends ImageObject
 {
+
+    rotate = 0;
     constructor()
     {
         super(WorldObjectType.ImageObject,"Sun");
@@ -35,6 +37,12 @@ export default class Sun extends ImageObject
           {
 
             context.save();
+
+            context.translate(posX,posY);
+            this.rotate +=0.1;
+            context.rotate(this.rotate);
+            context.translate(-sizeX/2,-sizeY/2);
+
     
     /*
             var vscale = this.verticalScaleStepper.next();
@@ -48,7 +56,7 @@ export default class Sun extends ImageObject
             */
            //context.setTransform
 
-            context.drawImage(this.mcImage!.image,posX,posY,sizeX,sizeY);
+            context.drawImage(this.mcImage!.image,0,0,sizeX,sizeY);
     
             context.restore();
     
