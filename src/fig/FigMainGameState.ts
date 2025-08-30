@@ -13,10 +13,11 @@ import Hose from "./object2d/Hose";
 
 export default class FigMainGameState extends Pong2GameState
 {
-    
+    randomPlacement = new RectanglePlacement({x:0.1,y:0.1,w:0.9,h:0.6},0.05,0.05,0,0);
+    staticObjectCount = 0;
     constructor(game : Game, background: Background)
     {
-      
+
         super(game,background);
         
         
@@ -32,7 +33,7 @@ export default class FigMainGameState extends Pong2GameState
     setupStaticGameObjects()
     {
       var t = new Random(Date.now());
-      var staticObjectCount = 0;
+
       for(var i = 0; i<7;i++)
       {
         for(var j = 0; j<4;j++)
@@ -51,32 +52,31 @@ export default class FigMainGameState extends Pong2GameState
           }
 
         }
-        staticObjectCount++;
+        this.staticObjectCount++;
       }
-      let randomPlacement = new RectanglePlacement({x:0.1,y:0.1,w:0.9,h:0.6},0.05,0.05,0,0);
-      randomPlacement.addRectangle({x:0.5,y:0.5,w:0.05,h:0.05});
+     
+      //randomPlacement.addRectangle({x:0.5,y:0.5,w:0.05,h:0.05});
 
-      var staticObjectCount = 0;
+      
       for(var i =0; i<20; i++)
       {
-        let rect = randomPlacement.randomPlace();
+        let rect = this.randomPlacement.randomPlace();
         if(rect != null)
         {
-          randomPlacement.addRectangle(rect);
+          this.randomPlacement.addRectangle(rect);
           console.log("randomPlacement: ", rect);
-          var staticImageStr = "staticImage"+i;
-          var stc = this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount];
-          //var so = StaticObject.createStaticObject(rect.x - 0.5, rect.y -0.5, 0.05, 0.05, staticImageStr, stc);
-          var so = new Flower(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc);
+          var staticImageStr = "staticImage"+this.staticObjectCount;
+          var stc = this.game.gameRenderer.staticImages[this.staticObjectCount % this.game.gameRenderer.staticImageCount];
+          var so = new Flower(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc,rect);
           so.stage = 0;
-          this.staticObjectGroup.childObjectList.push(so);
+          this.staticObjectGroup.addChildObject(so);
         }
         else
         {
           break;
         }
 
-        staticObjectCount++;
+        this.staticObjectCount++;
       }
       
 
@@ -89,13 +89,30 @@ export default class FigMainGameState extends Pong2GameState
       console.log("hello");
     }
 
-    handleMaxHits(gameObject : GameObject)
+    handleMaxHits(gameObject : Flower)
     {
       gameObject.stage++;
       gameObject.hitCount =0;
       if(gameObject.stage >2)
       {
         gameObject.stage = 3;
+        this.randomPlacement.removeRectangle(gameObject.placementRect);
+        gameObject.removeFromParent();
+
+        //###########################################
+        let rect = this.randomPlacement.randomPlace();
+        if(rect != null)
+        {
+          this.randomPlacement.addRectangle(rect);
+          console.log("randomPlacement: ", rect);
+          var staticImageStr = "staticImage"+this.staticObjectCount;
+          var stc = this.game.gameRenderer.staticImages[this.staticObjectCount % this.game.gameRenderer.staticImageCount];
+          var so = new Flower(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc,rect);
+          so.stage = 0;
+          this.staticObjectGroup.addChildObject(so);
+          this.staticObjectCount++
+        }
+        //###########################################
       }
       else
       {

@@ -37,6 +37,7 @@ export default class GameObject {
 
   stage:number =0;
 
+  parent : GameObject | null = null;
   constructor(
     private gameObjectType: WorldObjectType,
     private name: string,
@@ -68,12 +69,13 @@ export default class GameObject {
 
   this.usingViewPort = false;
   this.viewPort = null;
-
-  this.addChildObject = function(gameObject)
+*/
+  addChildObject(gameObject : GameObject)
   {
     this.childObjectList.push(gameObject);
     gameObject.parent = this;
   }
+  /*
   this.getTimeDeltaMs = function()
   {
     var now = Date.now();
@@ -191,9 +193,10 @@ export default class GameObject {
 
     }
   }
-  this.removeFromParent = function()
+  */
+  removeFromParent()
   {
-    if(this.parent != null)
+    if(this.parent)
     {
       var index = this.parent.childObjectList.indexOf(this);
       if(index >= 0)
@@ -203,7 +206,7 @@ export default class GameObject {
 
     }
   }
-  */
+  
   advance(time: number) {
   
     if(this.fuseOn)

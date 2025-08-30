@@ -9,4 +9,9 @@ export default class GroupObject extends GameObject
   {
     super(WorldObjectType.GroupObject,name);
   }
+
+  removeChild()
+  {
+    
+  }
 }

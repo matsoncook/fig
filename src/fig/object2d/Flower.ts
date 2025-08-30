@@ -1,11 +1,16 @@
 import StaticObject from "../../pong2/StaticObject";
 import WorldObjectType from "../../template/gamejs/WorldObjectType";
+import { Rect } from "../../transform/RectanglePlacement";
 import Stepper from "../../transform/Stepper";
 
 export default class Flower extends StaticObject{
-    constructor(posX: number, posY: number, sizeX: number, sizeY: number, name: string, staticImage: HTMLImageElement)
+
+  
+    constructor(posX: number, posY: number, sizeX: number, sizeY: number, name: string, staticImage: HTMLImageElement,public placementRect : Rect)
     {
         super(WorldObjectType.ImageObject,name);
+
+
 
         this.size.set(sizeX,sizeY);
         this.position.set(posX,posY);

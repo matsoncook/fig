@@ -1,6 +1,6 @@
 
-type Rect = { x: number; y: number; w: number; h: number };
-interface PlaceOpts {
+export type Rect = { x: number; y: number; w: number; h: number };
+export interface PlaceOpts {
     padding?: number;     // extra gap to keep between rectangles (and outer edges)
     maxAttempts?: number; // how many random tries before giving up
     integer?: boolean;    // snap x/y to integers
@@ -20,6 +20,15 @@ export default class RectanglePlacement {
         rect.y += this.sy;
         this.obstacles.push(rect);
 
+    }
+    removeRectangle(rect : Rect)
+    {
+        
+
+        const index = this.obstacles.indexOf(rect);
+        if (index !== -1) {
+            this.obstacles.splice(index, 1);
+        }
     }
 
     randomPlace()
