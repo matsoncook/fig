@@ -24,7 +24,7 @@ export default class FigGame extends Game{
 
         let bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
         this.gameMain = new FigMainGameState(this,bg);
-        //this.setup();
+        this.gameMain.setup();
     }
 
     configureGameRenderer()

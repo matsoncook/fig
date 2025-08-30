@@ -1,4 +1,5 @@
 import Background from "../object2d/Background";
+import GroupObject from "../object2d/GroupObject";
 import Ball from "../pong2/Ball";
 import Pong2GameState from "../pong2/Pong2GameState";
 import StaticObject from "../pong2/StaticObject";
@@ -10,11 +11,14 @@ import Random from "../transform/Random";
 import RectanglePlacement from "../transform/RectanglePlacement";
 import Flower from "./object2d/Flower";
 import Hose from "./object2d/Hose";
+import Sun from "./object2d/Sun";
 
 export default class FigMainGameState extends Pong2GameState
 {
     randomPlacement = new RectanglePlacement({x:0.1,y:0.1,w:0.9,h:0.6},0.05,0.05,0,0);
     staticObjectCount = 0;
+
+    sunGroup : GroupObject = new GroupObject("sunGroup");
     constructor(game : Game, background: Background)
     {
 
@@ -113,6 +117,10 @@ export default class FigMainGameState extends Pong2GameState
           this.staticObjectCount++
         }
         //###########################################
+
+
+        // let sun = new Sun();
+        // this.sunGroup.addChildObject(sun);
       }
       else
       {
