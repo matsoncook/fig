@@ -8,7 +8,7 @@ export default class Sun extends ImageObject
     constructor()
     {
         super(WorldObjectType.ImageObject,"Sun");
-        this.mcImage = new McImage("images/pumkin/download00.png",()=>{})
+        this.mcImage = new McImage("images/sun/sun00.png",()=>{})
         this.size.set(.20,.20);
     }
 
@@ -46,6 +46,7 @@ export default class Sun extends ImageObject
     
             context.setTransform(1,0,vskew,vscale,posX1,posY1);
             */
+           //context.setTransform
 
             context.drawImage(this.mcImage!.image,posX,posY,sizeX,sizeY);
     
