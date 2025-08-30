@@ -8,6 +8,7 @@ import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
 import Random from "../transform/Random";
 import RectanglePlacement from "../transform/RectanglePlacement";
+import Flower from "./object2d/Flower";
 import Hose from "./object2d/Hose";
 
 export default class FigMainGameState extends Pong2GameState
@@ -66,7 +67,7 @@ export default class FigMainGameState extends Pong2GameState
           var staticImageStr = "staticImage"+i;
           var stc = this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount];
           //var so = StaticObject.createStaticObject(rect.x - 0.5, rect.y -0.5, 0.05, 0.05, staticImageStr, stc);
-          var so = StaticObject.createStaticObject(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc);
+          var so = new Flower(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc);
           so.stage = 0;
           this.staticObjectGroup.childObjectList.push(so);
         }
