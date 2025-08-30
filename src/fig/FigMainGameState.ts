@@ -23,6 +23,9 @@ export default class FigMainGameState extends Pong2GameState
     {
 
         super(game,background);
+        this.gameObjectList.push(this.sunGroup);
+
+        this.sunGroup.addChildObject(new Sun());
         
         
     }
