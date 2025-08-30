@@ -122,8 +122,8 @@ export default class FigMainGameState extends Pong2GameState
         //###########################################
 
 
-        // let sun = new Sun();
-        // this.sunGroup.addChildObject(sun);
+        let sun = new Sun(gameObject.position);
+        this.sunGroup.addChildObject(sun);
       }
       else
       {
