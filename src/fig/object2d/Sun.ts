@@ -4,13 +4,16 @@ import GameRenderer from "../../template/gamejs/GameRenderer";
 import WorldObjectType from "../../template/gamejs/WorldObjectType";
 import { Point2d } from "../../transform/Point2d";
 import Stepper from "../../transform/Stepper";
+import SunPath from "./SunPath";
 
 export default class Sun extends ImageObject
 {
 
     rotate = 0;
-    pathStepperX = new Stepper(0,0.5,.01);
-    pathStepperY = new Stepper(0,0.5,.01);
+    pathStepperX = new Stepper();
+    pathStepperY = new Stepper();
+
+    sunPath = new SunPath(this);
 
     constructor(position = new Point2d(0,0))
     {
@@ -18,26 +21,37 @@ export default class Sun extends ImageObject
         this.mcImage = new McImage("images/sun/sun00.png",()=>{})
         this.size.set(.20,.20);
         this.position.set1(position);
+        this.setup();
     }
-
+    setup()
+    {
+        this.sunPath.setPath(this.position,new Point2d(0.5,0.5));
+    }
     advance(time: number): void {
-        
+       
     }
 
     render(gameRenderer: GameRenderer)
-      {
+    {
+        this.sunPath.next();
+        // this.position.x = -this.pathStepperX.next();
+        // this.position.y = this.pathStepperY.next();
 
-        this.position.x = -this.pathStepperX.next();
-        this.position.y = this.pathStepperY.next();
+        // this.pathStepperX.checkGotToTo((s)=>{
+        //     s.pause();
+        //     this.removeFromParent();
+        // })
 
-        this.pathStepperX.checkGotToTo((s)=>{
-            s.pause();
-            this.removeFromParent();
-        })
+        // this.pathStepperY.checkGotToTo((s)=>{
+        //     s.pause()
+        // })
 
-        this.pathStepperY.checkGotToTo((s)=>{
-            s.pause()
-        })
+        this.sunPath.setPosition(this.position);
+
+        //TODO This is a bit ugly
+        //Pointstepper cant handle negative numbers as yet
+        //Need to implement PointStepper from Defender360
+        this.position.x = -this.position.x;
 
         var context = gameRenderer.context;
         var posX = gameRenderer.gameToCanvasX(this.position.x);

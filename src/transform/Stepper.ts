@@ -1,4 +1,6 @@
-
+/*
+Cant handle situations where to is less than from
+*/
 
 export default class Stepper {
 
@@ -6,8 +8,14 @@ export default class Stepper {
   multiplier = 1;
   gotToTo = false;
   gotToFrom = false;
-  constructor(private from: number, private to: number, private step: number) {
+  constructor(private from: number =0, private to: number =1, private step: number = 1) {
     this.current = from;
+  }
+  set(from: number, to: number, step: number = 1)
+  {
+    this.from = from;
+    this.to = to;
+    this.step = step;
   }
   next() {
     this.gotToTo = false;
@@ -25,6 +33,7 @@ export default class Stepper {
     }
     return this.current;
   }
+  
   pause()
   {
     this.multiplier = 0;
