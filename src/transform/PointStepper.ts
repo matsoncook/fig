@@ -9,15 +9,26 @@ export default class PointStepper {//implements Animatable{
     stopped : boolean = false;
     stepCount : number = 0;
     isReversed: any;
-    private _active: boolean = false;
+    private _active: boolean = true;
 
     complete : boolean = false;
     
-    constructor(private from : number,private to : number,private stepNumber : number, private reverse : boolean )
+    constructor(private from : number = 0,
+        private to : number = 0,
+        private stepNumber : number = 10, 
+        private reverse : boolean = true )
     {
         this.currentValue = from;
         this.setup(from,to ,stepNumber);
         
+    }
+    set(from : number ,to : number,stepNumber : number,doReverse : boolean)
+    {
+        this.to = to;
+        this.from = from;
+        this.stepNumber = stepNumber;
+        this.reverse = doReverse;
+        this.setup(from,to ,stepNumber);
     }
     setup(from: number, to: number, stepNumber: number) {
         this.stepCount = 0;
@@ -56,11 +67,11 @@ export default class PointStepper {//implements Animatable{
         }
 
     }
-    onComplete(callback : ()=>void)
+    onComplete(callback : (pointStepper : PointStepper )=>void)
     {
         if(this.complete)
         {
-            callback();
+            callback(this);
         }
     }
     public get active(): boolean {

@@ -25,7 +25,7 @@ export default class Sun extends ImageObject
     }
     setup()
     {
-        this.sunPath.setPath(this.position,new Point2d(0.5,0.5));
+        this.sunPath.setPath(this.position,new Point2d(-0.5,0.5));
     }
     advance(time: number): void {
        
@@ -51,7 +51,7 @@ export default class Sun extends ImageObject
         //TODO This is a bit ugly
         //Pointstepper cant handle negative numbers as yet
         //Need to implement PointStepper from Defender360
-        this.position.x = -this.position.x;
+        //this.position.x = -this.position.x;
 
         var context = gameRenderer.context;
         var posX = gameRenderer.gameToCanvasX(this.position.x);
