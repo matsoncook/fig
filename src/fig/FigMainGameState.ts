@@ -12,6 +12,7 @@ import RectanglePlacement from "../transform/RectanglePlacement";
 import Flower from "./object2d/Flower";
 import Hose from "./object2d/Hose";
 import Sun from "./object2d/Sun";
+import Score from "./Score";
 
 export default class FigMainGameState extends Pong2GameState
 {
@@ -19,6 +20,7 @@ export default class FigMainGameState extends Pong2GameState
     staticObjectCount = 0;
 
     sunGroup : GroupObject = new GroupObject("sunGroup");
+    scoreObj : Score = new Score();
     constructor(game : Game, background: Background)
     {
 
@@ -26,6 +28,9 @@ export default class FigMainGameState extends Pong2GameState
         this.gameObjectList.push(this.sunGroup);
 
         this.sunGroup.addChildObject(new Sun());
+
+        this.gameObjectList.push(this.scoreObj);
+
         
         
     }
@@ -105,6 +110,8 @@ export default class FigMainGameState extends Pong2GameState
         gameObject.stage = 3;
         this.randomPlacement.removeRectangle(gameObject.placementRect);
         gameObject.removeFromParent();
+
+        this.scoreObj.score++;
 
         //###########################################
         let rect = this.randomPlacement.randomPlace();

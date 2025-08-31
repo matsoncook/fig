@@ -36,6 +36,7 @@ export default class SunPath
         this.pathStepperX.onComplete((s)=>{
             s.active=false;
             this.sun.removeFromParent();
+            
         })
 
         this.pathStepperY.checkGotToTo((s)=>{
