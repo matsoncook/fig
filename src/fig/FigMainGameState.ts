@@ -7,10 +7,12 @@ import Game from "../template/gamejs/Game";
 import GameControl from "../template/gamejs/GameControl";
 import GameObject from "../template/gamejs/GameObject";
 import GameState from "../template/gamejs/GameState";
+import { Point2d } from "../transform/Point2d";
 import Random from "../transform/Random";
 import RectanglePlacement from "../transform/RectanglePlacement";
 import Flower from "./object2d/Flower";
 import Hose from "./object2d/Hose";
+import SoilBox from "./object2d/SoilBox";
 import Sun from "./object2d/Sun";
 import Score from "./Score";
 
@@ -20,11 +22,25 @@ export default class FigMainGameState extends Pong2GameState
     staticObjectCount = 0;
 
     sunGroup : GroupObject = new GroupObject("sunGroup");
+    soilGroup : GroupObject = new GroupObject("soilGroup");
     scoreObj : Score = new Score();
     constructor(game : Game, background: Background)
     {
 
         super(game,background);
+
+
+
+        let soilSize = new Point2d(.2,.2);
+        let soil1 = new SoilBox(new Point2d(-0.25,.3),soilSize);
+        this.soilGroup.addChildObject(soil1);
+         let soil2 = new SoilBox(new Point2d(0.25,.3),soilSize);
+        this.soilGroup.addChildObject(soil2,);
+         let soil3 = new SoilBox(new Point2d(-0.25,0),soilSize);
+        this.soilGroup.addChildObject(soil3);
+         let soil4 = new SoilBox(new Point2d(0.25,.0),soilSize);
+        this.soilGroup.addChildObject(soil4);
+
         this.gameObjectList.push(this.sunGroup);
 
         this.sunGroup.addChildObject(new Sun());
@@ -36,7 +52,7 @@ export default class FigMainGameState extends Pong2GameState
     }
     setup()
     {
-      
+        this.gameObjectList.splice(1, 0, this.soilGroup);
         this.setupStaticGameObjects();
         super.setup();
         this.hose = new Hose("images/flowers/hose.png");
