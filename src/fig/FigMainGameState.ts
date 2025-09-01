@@ -34,11 +34,11 @@ export default class FigMainGameState extends Pong2GameState
         let soilSize = new Point2d(.2,.2);
         let soil1 = new SoilBox(new Point2d(-0.25,.3),soilSize);
         this.soilGroup.addChildObject(soil1);
-         let soil2 = new SoilBox(new Point2d(0.25,.3),soilSize);
+        let soil2 = new SoilBox(new Point2d(0.25,.3),soilSize);
         this.soilGroup.addChildObject(soil2,);
-         let soil3 = new SoilBox(new Point2d(-0.25,0),soilSize);
+        let soil3 = new SoilBox(new Point2d(-0.25,0),soilSize);
         this.soilGroup.addChildObject(soil3);
-         let soil4 = new SoilBox(new Point2d(0.25,.0),soilSize);
+        let soil4 = new SoilBox(new Point2d(0.25,.0),soilSize);
         this.soilGroup.addChildObject(soil4);
 
         this.gameObjectList.push(this.sunGroup);

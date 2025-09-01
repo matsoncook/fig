@@ -267,7 +267,7 @@ export default class Pong2GameState extends GameState
   
   handleGameFinished()
   {
-    this.game.switchGameState(this.game.gameWrapUp);
+    this.game.switchGameState(this.game.gameEnd);
   }
   isGameFinished(){
     // var diff = (Date.now() - initTime)/1000;

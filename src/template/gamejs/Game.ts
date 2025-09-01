@@ -19,7 +19,7 @@ export default class Game {
   //TODO This may need to extended out
   gameIntro = new GameState();
   gameMain = new GameState();
-  gameWrapUp: GameState= new GameState();;
+  gameEnd : GameState= new GameState();;
 
   loading = false;
 
