@@ -29,14 +29,14 @@ export default class FigMainGameState extends Pong2GameState
 
         super(game,background);
 
-        let soilSize = new Point2d(.2,.2);
-        let soil1 = new SoilBox(new Point2d(-0.25,.3),soilSize);
+        let soilSize = new Point2d(.25,.25);
+        let soil1 = new SoilBox(new Point2d(-0.2,.25),soilSize);
         this.soilGroup.addChildObject(soil1);
-        let soil2 = new SoilBox(new Point2d(0.25,.3),soilSize);
+        let soil2 = new SoilBox(new Point2d(0.2,.25),soilSize);
         this.soilGroup.addChildObject(soil2,);
-        let soil3 = new SoilBox(new Point2d(-0.25,0),soilSize);
+        let soil3 = new SoilBox(new Point2d(-0.2,-.15),soilSize);
         this.soilGroup.addChildObject(soil3);
-        let soil4 = new SoilBox(new Point2d(0.25,.0),soilSize);
+        let soil4 = new SoilBox(new Point2d(0.2,-.15),soilSize);
         this.soilGroup.addChildObject(soil4);
 
         this.gameObjectList.push(this.sunGroup);
@@ -126,6 +126,7 @@ export default class FigMainGameState extends Pong2GameState
         {
           this.scoreObj.score = 0;
           this.game.switchGameState(this.game.gameEnd);
+          return;
         }
 
         //###########################################
