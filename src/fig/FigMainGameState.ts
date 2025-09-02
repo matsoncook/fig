@@ -29,8 +29,6 @@ export default class FigMainGameState extends Pong2GameState
 
         super(game,background);
 
-
-
         let soilSize = new Point2d(.2,.2);
         let soil1 = new SoilBox(new Point2d(-0.25,.3),soilSize);
         this.soilGroup.addChildObject(soil1);
@@ -47,8 +45,8 @@ export default class FigMainGameState extends Pong2GameState
 
         this.gameObjectList.push(this.scoreObj);
 
-        
-        
+
+  
     }
     setup()
     {
@@ -106,11 +104,7 @@ export default class FigMainGameState extends Pong2GameState
 
         this.staticObjectCount++;
       }
-      
 
-      
- 
-      
     }
     placeSaticImageRandom()
     {
@@ -128,6 +122,11 @@ export default class FigMainGameState extends Pong2GameState
         gameObject.removeFromParent();
 
         this.scoreObj.score++;
+        if(this.scoreObj.score > 0)
+        {
+          this.scoreObj.score = 0;
+          this.game.switchGameState(this.game.gameEnd);
+        }
 
         //###########################################
         let rect = this.randomPlacement.randomPlace();

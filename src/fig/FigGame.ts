@@ -1,6 +1,7 @@
 import Background from "../object2d/Background";
 import Game from "../template/gamejs/Game";
 import GameRenderer from "../template/gamejs/GameRenderer";
+import FigEndGameState from "./FigEndGameState";
 import FigIntroGameState from "./FigIntroGameState";
 import FigMainGameState from "./FigMainGameState";
 
@@ -25,6 +26,9 @@ export default class FigGame extends Game{
         let bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
         this.gameMain = new FigMainGameState(this,bg);
         this.gameMain.setup();
+
+        this.gameEnd = new FigEndGameState(this);
+        this.gameEnd.initialise();
     }
 
     configureGameRenderer()

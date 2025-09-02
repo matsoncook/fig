@@ -30,16 +30,6 @@ export default class Game {
 
   constructor(private _gameRenderer: GameRenderer) {}
   setup() {
-    // this.gameIntro = {
-    //   gameObjectList :  [],
-
-    //   isNowPlaying : function()
-    //   {
-    //     return false;
-    //   }
-    // };
-    // this.gameAnimation.gameState = this.gameState;
-    // this.gameAnimation.gameRenderer = this.gameRenderer;
     this.gameControl.gameRenderer = this.gameRenderer;
     this.gameControl.setupControls()
   }

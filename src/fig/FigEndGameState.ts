@@ -1,10 +1,12 @@
 
 import Background from "../object2d/Background";
+import TextObject from "../object2d/TextObject";
 import GameControl from "../template/gamejs/GameControl";
 import GameState from "../template/gamejs/GameState";
+import WorldObjectType from "../template/gamejs/WorldObjectType";
 import FigGame from "./FigGame";
 
-export default class FigIntroGameState extends GameState
+export default class FigEndGameState extends GameState
 {
     constructor(private game : FigGame)
     {
@@ -15,9 +17,11 @@ export default class FigIntroGameState extends GameState
     {
         var bg = Background.createBackgroundImageObject("images/flowers/lawn.jpg");
         this.addGameObject(bg); 
+        
+        let to = new TextObject(WorldObjectType.Text,"YouWon");
+        to.text = "You Won!"
+        this.addGameObject(to);
 
-    
-    
     }
 
     bindControls(gameControl : GameControl)
