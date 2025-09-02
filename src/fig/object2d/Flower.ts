@@ -6,7 +6,7 @@ import Stepper from "../../transform/Stepper";
 export default class Flower extends StaticObject{
 
   
-    constructor(posX: number, posY: number, sizeX: number, sizeY: number, name: string, staticImage: HTMLImageElement,public placementRect : Rect)
+    constructor(posX: number, posY: number, sizeX: number, sizeY: number, name: string, staticImage: HTMLImageElement,public placementRect : Rect = {x:0,y:0,w:1,h:1})
     {
         super(WorldObjectType.ImageObject,name);
 

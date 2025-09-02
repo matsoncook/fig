@@ -104,7 +104,32 @@ export default class FigMainGameState extends Pong2GameState
 
         this.staticObjectCount++;
       }
+      this.staticObjectCount = 0;
+      for(var gameObject of this.soilGroup.childObjectList)
+      {
+        let soilBox : SoilBox = gameObject as SoilBox;
+        for(var x = -1; x <=1; x+=2)
+        {
+          for(var y = -1; y <=1; y+=2)
+          {
+            let position = new Point2d();
 
+            //this.addStaticObject(this.staticObjectCount, position);
+
+            this.staticObjectCount++;
+          }
+        }
+
+      }
+
+    }
+    addStaticObject(count : number, position : Point2d)
+    {
+        var staticImageStr = "staticImage" + count;
+        var stc = this.game.gameRenderer.staticImages[count % this.game.gameRenderer.staticImageCount];
+        var so = new Flower(position.x, position.y, 0.05, 0.05, staticImageStr, stc);
+        so.stage = 0;
+        this.staticObjectGroup.addChildObject(so);
     }
     placeSaticImageRandom()
     {
