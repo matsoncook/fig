@@ -12,6 +12,7 @@ import Random from "../transform/Random";
 import RectanglePlacement from "../transform/RectanglePlacement";
 import Flower from "./object2d/Flower";
 import Hose from "./object2d/Hose";
+import LawnMower from "./object2d/LawnMower";
 import SoilBox from "./object2d/SoilBox";
 import Sun from "./object2d/Sun";
 import Score from "./Score";
@@ -45,7 +46,9 @@ export default class FigMainGameState extends Pong2GameState
 
         this.gameObjectList.push(this.scoreObj);
 
-
+        let lawnmower = new LawnMower(new Point2d(), new Point2d(.1,.1));
+       
+        this.gameObjectList.push(lawnmower);
   
     }
     setup()
@@ -60,26 +63,7 @@ export default class FigMainGameState extends Pong2GameState
     {
       var t = new Random(Date.now());
 
-      for(var i = 0; i<7;i++)
-      {
-        for(var j = 0; j<4;j++)
-        {
-          var r = t.nextDouble();
-          r = 1;
-          if(r>0.5)
-          {
-            var ii = -0.4+i*.1;
-            var jj = 0+j*.1;
-            var staticImageStr = "staticImage"+i+"x"+j;
-            // var stc = this.game.gameRenderer.staticImages[staticObjectCount % this.game.gameRenderer.staticImageCount];
-            // var so = StaticObject.createStaticObject(ii,jj,0.05,0.05,staticImageStr,stc);
-            // so.stage = 0;
-            // this.staticObjectGroup.childObjectList.push(so);
-          }
-
-        }
-        this.staticObjectCount++;
-      }
+      
      
       //randomPlacement.addRectangle({x:0.5,y:0.5,w:0.05,h:0.05});
 
@@ -95,7 +79,7 @@ export default class FigMainGameState extends Pong2GameState
           var stc = this.game.gameRenderer.staticImages[this.staticObjectCount % this.game.gameRenderer.staticImageCount];
           var so = new Flower(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc,rect);
           so.stage = 0;
-          this.staticObjectGroup.addChildObject(so);
+          //this.staticObjectGroup.addChildObject(so);
         }
         else
         {
@@ -108,16 +92,12 @@ export default class FigMainGameState extends Pong2GameState
       for(var gameObject of this.soilGroup.childObjectList)
       {
         let soilBox : SoilBox = gameObject as SoilBox;
-        for(var x = -1; x <=1; x+=2)
+        for(var position of soilBox.slots)
         {
-          for(var y = -1; y <=1; y+=2)
-          {
-            let position = new Point2d();
 
-            //this.addStaticObject(this.staticObjectCount, position);
-
+            this.addStaticObject(this.staticObjectCount, position);
             this.staticObjectCount++;
-          }
+
         }
 
       }
