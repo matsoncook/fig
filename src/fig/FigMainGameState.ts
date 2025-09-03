@@ -127,9 +127,9 @@ export default class FigMainGameState extends Pong2GameState
         gameObject.removeFromParent();
 
         this.scoreObj.score++;
-        if(this.scoreObj.score > 0)
+        if(this.scoreObj.isGameFinised())
         {
-          this.scoreObj.score = 0;
+          this.scoreObj.reset();
           this.game.switchGameState(this.game.gameEnd);
           return;
         }

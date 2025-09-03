@@ -6,6 +6,7 @@ import { Point2d } from "../transform/Point2d";
 
 export default class Score extends TextObject{
     score = 0;
+    maxScore = 1;
     constructor()
     {
         super(WorldObjectType.Text,"Score: ");
@@ -41,6 +42,14 @@ export default class Score extends TextObject{
         this.horizontalJustification = TextObject.HorizontalJustification.Right;
         this.verticalJustification = TextObject.VerticalJustification.Bottom;
     }
+    isGameFinised() : boolean
+    {
+        return this.score >= this.maxScore;
+    }
+    reset()
+    {
+        this.score = 0;
+    }
 
     render(gameRenderer : GameRenderer)
     {
@@ -48,5 +57,6 @@ export default class Score extends TextObject{
         this.text = "Score: " + this.score;
         super.render(gameRenderer  );
     }
+
 
 }
