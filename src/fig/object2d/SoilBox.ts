@@ -6,6 +6,7 @@ import { Point2d } from "../../transform/Point2d";
 
 export default class SoilBox extends ImageObject
 {
+    slots : Point2d[] = [];
     constructor(position : Point2d, size : Point2d)
     {
         super(WorldObjectType.ImageObject,"SoilBox")
@@ -14,6 +15,23 @@ export default class SoilBox extends ImageObject
 
         this.position.set1(position);
         this.size.set1(size);
+
+        this.createSlots();
+    }
+
+    createSlots()
+    {
+        this.slots.push(new Point2d().set1(this.position));
+
+        let quarteSizeX = this.size.x/4;
+        let quarteSizeY= this.size.y/4;
+
+        this.slots.push(new Point2d().set2(this.position.x - quarteSizeX,this.position.y - quarteSizeY ));
+        this.slots.push(new Point2d().set2(this.position.x + quarteSizeX,this.position.y - quarteSizeY ));
+        this.slots.push(new Point2d().set2(this.position.x - quarteSizeX,this.position.y + quarteSizeY ));
+        this.slots.push(new Point2d().set2(this.position.x + quarteSizeX,this.position.y + quarteSizeY ));
+
+
     }
 
     render(gameRenderer: GameRenderer): void {
