@@ -25,6 +25,7 @@ export default class FigMainGameState extends Pong2GameState
     sunGroup : GroupObject = new GroupObject("sunGroup");
     soilGroup : GroupObject = new GroupObject("soilGroup");
     scoreObj : Score = new Score();
+    lawnmower = new LawnMower(new Point2d(-.45,-.45), new Point2d(.1,.1));
     constructor(game : Game, background: Background)
     {
 
@@ -46,9 +47,9 @@ export default class FigMainGameState extends Pong2GameState
 
         this.gameObjectList.push(this.scoreObj);
 
-        let lawnmower = new LawnMower(new Point2d(), new Point2d(.1,.1));
+        //let lawnmower = new LawnMower(new Point2d(-.45,-.45), new Point2d(.1,.1));
        
-        this.gameObjectList.push(lawnmower);
+        this.gameObjectList.push(this.lawnmower);
   
     }
     setup()
@@ -185,5 +186,69 @@ export default class FigMainGameState extends Pong2GameState
 
     advanceStaticObjects(): void {
       //override this so no advance
+    }
+
+    aim = (posX:number,posY:number) =>
+    {
+       if(posX<-.4 && posY <-.4)
+      {
+        this.lawnmower.hoverOn = true;
+        return;
+      }
+      else
+      {
+        this.lawnmower.hoverOn = false;
+      }
+      var aimer = this.aimer;
+  
+      //aimer.visible = true;
+      aimer.to.set(posX,posY);
+  
+      let hose = this.hose! as Hose;
+      hose.to.set(posX,posY);
+  
+    }
+
+    
+    fire = (posX:number,posY:number) =>
+    {
+
+      if(posX<-.45 && posY <-.45)
+      {
+        this.lawnmower.hoverOn = true;
+        return;
+      }
+      else
+      {
+        this.lawnmower.hoverOn = false;
+      }
+
+      if(this.allowFire)
+      {
+        console.log("fire:("+posX+","+posY+")")
+        //game.gameState.gameObjectList.push(ball);
+        var aimer = this.aimer;
+        aimer.to.set(posX,posY);
+        aimer.visible = false;
+  
+        this.launchX = aimer.to.x - aimer.position.x;
+        this.launchY = aimer.to.y - aimer.position.y;
+  
+        let hose = this.hose! as Hose;
+        let origin = hose.tip;
+  
+        for(var i = 0; i<this.ballGroupMaxSize;i++)
+        {			
+          var ball = this.ballList.childObjectList[i] as Ball;
+          ball.origin = origin;
+        }
+  
+        this.launch();
+  
+        for(var i = 0; i<5 ; i++)
+        {
+          setTimeout(this.launch,i * 200);
+        }			
+      }
     }
 }
