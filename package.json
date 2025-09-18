@@ -4,27 +4,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc && npx webpack",
-    "watch": "npx webpack --watch --mode=development",
-    "serve": "node server.js",
-    "serve:watch": "nodemon --watch server.js --watch dist --ext js,json --signal SIGTERM server.js",
-    "browsersync": "browser-sync start --proxy http://localhost:3000 --files \"dist/**/*,public/**/*,views/**/*\" --no-ui --no-open --port 3001",
-    "dev": "concurrently -k -n WP,SRV,BS \"npm:watch\" \"npm:serve:watch\" \"npm:browsersync\""
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "browser-sync": "^3.0.4",
-    "concurrently": "^9.2.1",
-    "nodemon": "^3.1.10",
-    "ts-loader": "^9.5.2",
-    "webpack": "^5.100.2",
-    "webpack-cli": "^6.0.1"
+    "typescript": "^5.9.2",
+    "vite": "^5.3.3"
   },
-  "dependencies": {
-    "express": "^4.18.2",
-    "typescript": "^5.9.2"
-  }
+  "dependencies": {}
 }
