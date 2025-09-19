@@ -12,7 +12,7 @@ export default class Game {
 
   //gameRenderer = new GameRenderer();
   gameState = new GameState();
-  gameControl = new GameControl(this.gameRenderer,this.gameRenderer.controlCanvas);
+  gameControl : GameControl;//= new GameControl(this.gameRenderer,this.gameRenderer.controlCanvas);
   gameAnimation = new GameAnimation(this);
   //gameIntro : any;
 
@@ -28,7 +28,11 @@ export default class Game {
   maxCheckMediaTime = 1000;
   mediaList = [];
 
-  constructor(private _gameRenderer: GameRenderer) {}
+  constructor(private _gameRenderer: GameRenderer) {
+    this.gameRenderer = _gameRenderer;
+    this.gameControl = new GameControl(this.gameRenderer,this.gameRenderer.controlCanvas);
+      
+  }
   setup() {
     this.gameControl.gameRenderer = this.gameRenderer;
     this.gameControl.setupControls()
