@@ -6,7 +6,7 @@ import { Point2d } from "../transform/Point2d";
 
 export default class Score extends TextObject{
     score = 0;
-    maxScore = 1;
+    maxScore = 5;
     constructor()
     {
         super(WorldObjectType.Text,"Score: ");
