@@ -135,20 +135,22 @@ export default class FigMainGameState extends Pong2GameState
           return;
         }
 
-        //###########################################
-        let rect = this.randomPlacement.randomPlace();
-        if(rect != null)
-        {
-          this.randomPlacement.addRectangle(rect);
-          console.log("randomPlacement: ", rect);
-          var staticImageStr = "staticImage"+this.staticObjectCount;
-          var stc = this.game.gameRenderer.staticImages[this.staticObjectCount % this.game.gameRenderer.staticImageCount];
-          var so = new Flower(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc,rect);
-          so.stage = 0;
-          this.staticObjectGroup.addChildObject(so);
-          this.staticObjectCount++
-        }
-        //###########################################
+        // //###########################################
+        // //renew new flower 
+        // //###########################################
+        // let rect = this.randomPlacement.randomPlace();
+        // if(rect != null)
+        // {
+        //   this.randomPlacement.addRectangle(rect);
+        //   console.log("randomPlacement: ", rect);
+        //   var staticImageStr = "staticImage"+this.staticObjectCount;
+        //   var stc = this.game.gameRenderer.staticImages[this.staticObjectCount % this.game.gameRenderer.staticImageCount];
+        //   var so = new Flower(rect.x - 0.5, rect.y -0.2, 0.05, 0.05, staticImageStr, stc,rect);
+        //   so.stage = 0;
+        //   this.staticObjectGroup.addChildObject(so);
+        //   this.staticObjectCount++
+        // }
+        // //###########################################
 
 
         let sun = new Sun(gameObject.position);
